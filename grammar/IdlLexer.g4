@@ -15,6 +15,8 @@ RBRACE: '}';
 LPAREN: '(';
 RPAREN: ')';
 COMMA: ',';
+DOT: '.';
+COLON: ':';
 SEMICOLON: ';';
 
 CPP: 'cpp';
@@ -74,13 +76,13 @@ BINOR: '|';
 INT_LITERAL: '-'?[0-9]+ | '0x'[0-9a-fA-F]+;
 FLOAT_LITERAL: '-'?[0-9]+'.'[0-9]*'f' | [0-9]*'.'[0-9]+'f';
 DOUBLE_LITERAL: '-'?[0-9]+'.'[0-9]* | [0-9]*'.'[0-9]+;
-STR_LITERAL: '"' .*? '"';
+STR_LITERAL: '"' .*? ~[\\] '"';
 BOOL_LITERAL: 'true' | 'false';
 
 SINGLE_LINE_DOC_BEGIN: '//' -> pushMode(SINGLE_LINE_DOC), type(DOC_BEGIN);
 MULTI_LINE_DOC_BEGIN: '/*' -> pushMode(MULTI_LINE_DOC), type(DOC_BEGIN);
 
-NEWLINE: [\r?\n]+ -> skip ;
+NEWLINE: [\r\n]+ -> skip ;
 SPACE: ' ' -> skip;
 
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
@@ -91,8 +93,14 @@ mode SINGLE_LINE_DOC;
     SINGLE_INTERNAL: '@internal' -> type(DOC_INTERNAL);
     SINGLE_DEPRECATED: '@deprecated' -> type(DOC_DEPRECATED);
     SIGNLE_UNDOCUMENTED: '@undocumented' -> type(DOC_UNDOCUMENTED);
-    SINGLE_TEXT: ~[@\r\n ]+ -> type(DOC_TEXT);
+    SINGLE_TEXT: ~[@\r\n]+ -> type(DOC_TEXT);
     SIGNLE_SYMBOL: . -> type(DOC_TEXT);
 
 mode MULTI_LINE_DOC;
-    MULTI_END_COMMENT: '*/' -> popMode;
+    MULTI_END_COMMENT: '*/' -> popMode, type(DOC_END);
+    MULTI_COMMERCIAL: '@commercial' -> type(DOC_COMMERCIAL);
+    MULTI_INTERNAL: '@internal' -> type(DOC_INTERNAL);
+    MULTI_DEPRECATED: '@deprecated' -> type(DOC_DEPRECATED);
+    MULTI_UNDOCUMENTED: '@undocumented' -> type(DOC_UNDOCUMENTED);
+    MULTI_TEXT: ~[@\r\n(*/)]+ -> type(DOC_TEXT);
+    MULTI_SYMBOL: . -> type(DOC_TEXT);

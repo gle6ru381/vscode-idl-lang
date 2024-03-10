@@ -5,13 +5,27 @@ import { Position, Range, SemanticTokensBuilder } from 'vscode';
 import IdlParserVisitor from './grammar/IdlParserVisitor';
 import {
     DocumentationContext,
-    Documentation_tagContext,
-    Function_declContext,
-    Import_exprContext, Interface_declContext, Interface_ownershipContext, Internal_declContext, Parameters_declContext, ProgrammContext,
-    Property_declContext,
-    Top_declContext,
-    Type_prefixContext
+    DocumentationTagContext,
+    EnumDeclContext,
+    FunctionDeclContext,
+    ImportExprContext,
+    InterfaceDeclContext,
+    InterfaceOwnershipContext,
+    ListenerDeclContext,
+    ParametersDeclContext,
+    ProgrammContext,
+    PropertyDeclContext,
+    StructDeclContext,
+    StructKindContext,
+    TopDeclContext,
+    TypePrefixContext,
+    TypeRefContext,
+    VariantDeclContext
 } from './grammar/IdlParser';
+
+const PrimitiveTypes = new Set(['void', 'bool', 'int', 'uint', 'int64', 'size',
+    'string', 'float', 'double', 'time_interval', 'abs_timestamp', 'rel_timestamp', 'color', 'bytes', 'point', 'bitmap', 'image_provider', 'animated_image_provider', 'vector', 'dictionary',
+    'platform_user_data', 'platform_view', 'view_provider', 'model_provider', 'animated_model_provider']);
 
 export default class HighlightVisitor extends IdlParserVisitor<void> {
     tokensBuilder: SemanticTokensBuilder;
@@ -25,8 +39,11 @@ export default class HighlightVisitor extends IdlParserVisitor<void> {
     }
 
     pushToken(token: Token, type: string, modifiers?: readonly string[] | undefined) {
+        if (!token) {
+            return;
+        }
         const line = token.line - 1;
-        this.onDebug(`Push token in line ${line} on columnt ${token.column} with length ${token.text.length} with type: ${type} and modifiers: ${modifiers}`);
+        this.onDebug(`Push token in line ${line + 1} on columnt ${token.column} with length ${token.text.length} with type: ${type} and modifiers: ${modifiers}, token string "${token.text}"`);
         this.tokensBuilder.push(
             new Range(new Position(line, token.column),
                 new Position(line, token.column + token.text.length)),
@@ -42,80 +59,101 @@ export default class HighlightVisitor extends IdlParserVisitor<void> {
         this.visitChildren(ctx);
     };
 
-    visitTop_decl = (ctx: Top_declContext) => {
+    visitTopDecl = (ctx: TopDeclContext) => {
         this.onDebug('Visit top_decl');
         this.visitChildren(ctx);
-        this.pushToken(ctx.IDENTIFIER().symbol, 'interface', ['definition']);
     };
 
-    visitImport_expr = (ctx: Import_exprContext) => {
+    visitImportExpr = (ctx: ImportExprContext) => {
         this.onDebug(`Visit import: ${ctx.IMPORT().symbol}, ${ctx.STR_LITERAL().symbol}`);
         this.pushKeywordToken(ctx.IMPORT().symbol);
-        this.pushToken(ctx.STR_LITERAL().symbol, 'string');
     };
 
-    visitType_prefix = (ctx: Type_prefixContext) => {
+    visitTypePrefix = (ctx: TypePrefixContext) => {
         this.pushKeywordToken(ctx.TYPE_PREFIX().symbol);
         this.pushToken(ctx.IDENTIFIER().symbol, 'namespace');
     };
 
     visitDocumentation = (ctx: DocumentationContext) => {
+        this.onDebug('Push doc begin');
         this.pushToken(ctx.DOC_BEGIN().symbol, 'comment', ['documentation']);
+        this.onDebug('Push doc end');
         this.pushToken(ctx.DOC_END().symbol, 'comment', ['documentation']);
 
-        ctx.DOC_TEXT_list().map<void>((value) => {
+        this.onDebug('Push doc text');
+        ctx.DOC_TEXT_list().forEach((value) => {
             this.pushToken(value.symbol, 'comment', ['documentation']);
         });
 
         this.visitChildren(ctx);
     };
 
-    visitDocumentation_tag = (ctx: Documentation_tagContext) => {
-        this.pushToken(ctx.DOC_COMMERCIAL()?.symbol ??
-            ctx.DOC_DEPRECATED()?.symbol ??
-            ctx.DOC_INTERNAL()?.symbol ??
-            ctx.DOC_UNDOCUMENTED()?.symbol, 'decorator');
+    visitDocumentationTag = (ctx: DocumentationTagContext) => {
+        this.pushToken(ctx.DOC_COMMERCIAL()?.symbol, 'decorator');
+        this.pushToken(ctx.DOC_DEPRECATED()?.symbol, 'decorator');
+        this.pushToken(ctx.DOC_INTERNAL()?.symbol, 'decorator');
+        this.pushToken(ctx.DOC_UNDOCUMENTED()?.symbol, 'decorator');
     };
 
-    visitInternal_decl = (ctx: Internal_declContext) => {
-        this.visitChildren(ctx);
-    };
-
-    visitInterface_decl = (ctx: Interface_declContext) => {
-        const virtual = ctx.VIRTUAL()?.symbol;
-        if (virtual) {
-            this.pushKeywordToken(virtual);
-        }
-        const viewDelegate = ctx.VIEW_DELEGATE()?.symbol;
-        if (viewDelegate) {
-            this.pushKeywordToken(viewDelegate);
-        }
-        this.pushKeywordToken(ctx.INTERFACE().symbol);
+    visitInterfaceDecl = (ctx: InterfaceDeclContext) => {
+        this.pushToken(ctx.IDENTIFIER().symbol, 'interface', ['declaration']);
 
         this.visitChildren(ctx);
     };
 
-    visitInterface_ownership = (ctx: Interface_ownershipContext) => {
-        this.pushKeywordToken(ctx.SHARED_REF()?.symbol ?? ctx.WEAK_REF().symbol);
-    }
+    visitInterfaceOwnership = (ctx: InterfaceOwnershipContext) => {
+    };
 
-    visitFunction_decl = (ctx: Function_declContext) => {
-        this.pushToken(ctx._RetType, 'type');
+    visitEnumDecl = (ctx: EnumDeclContext) => {
+        this.visitChildren(ctx);
+    };
+
+    visitVariantDecl = (ctx: VariantDeclContext) => {
+        this.visitChildren(ctx);
+    };
+
+    visitStructDecl = (ctx: StructDeclContext) => {
+        this.pushToken(ctx.IDENTIFIER().symbol, 'struct', ['declaration']);
+
+        this.visitChildren(ctx);
+    };
+
+    visitStructKind = (ctx: StructKindContext) => {
+    };
+
+    visitListenerDecl = (ctx: ListenerDeclContext) => {
+        this.pushToken(ctx.IDENTIFIER().symbol, 'interface');
+
+        this.visitChildren(ctx);
+    };
+
+    visitFunctionDecl = (ctx: FunctionDeclContext) => {
         this.pushToken(ctx._Name, 'method', ['declaration']);
 
         this.visitChildren(ctx);
     };
 
-    visitParameters_decl = (ctx: Parameters_declContext) => {
-        const ids = ctx.IDENTIFIER_list();
-        for (var i = 0; i < ids.length - 1; i += 2) {
-            this.pushToken(ids[i].symbol, 'type');
-            this.pushToken(ids[i + 1].symbol, 'parameter');
-        }
+    visitParametersDecl = (ctx: ParametersDeclContext) => {
+        ctx.IDENTIFIER_list().forEach((value) => {
+            this.pushToken(value.symbol, 'parameter');
+        });
+
+        this.visitChildren(ctx);
     };
 
-    visitProperty_decl = (ctx: Property_declContext) => {
-        this.pushToken(ctx.IDENTIFIER(0).symbol, 'type');
-        this.pushToken(ctx.IDENTIFIER(1).symbol, 'property');
+    visitPropertyDecl = (ctx: PropertyDeclContext) => {
+        this.pushToken(ctx.IDENTIFIER().symbol, 'property');
+
+        this.visitChildren(ctx);
+    };
+
+    visitTypeRef = (ctx: TypeRefContext) => {
+        this.onDebug(`Global ns for typeRef: ${ctx._GlobalNs}`);
+
+        if (ctx.IDENTIFIER_list().length != 1 || !PrimitiveTypes.has(ctx.IDENTIFIER(0).getText())) {
+            ctx.IDENTIFIER_list().forEach((value) => {
+                this.pushToken(value.symbol, 'type');
+            });
+        }
     };
 }

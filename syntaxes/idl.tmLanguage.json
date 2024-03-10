@@ -2,8 +2,43 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "idl",
 	"patterns": [
+		{
+			"include": "#builtin-types"
+		},
+		{
+			"include": "#decl-keywords"
+		},
+		{
+			"include": "#modifier-keywords"
+		},
+		{
+			"include": "#string-literal"
+		}
 	],
 	"repository": {
+		"builtin-types": {
+			"match": "\\b(void|bool|int|uint|int64|size|string|float|double|time_interval|abs_timestamp|rel_timestamp|color|bytes|point|bitmap|image_provider|animated_image_provider|vector|dictionary|platform_user_data|platform_view|view_provider|model_provider|animated_model_provider)\\b",
+			"name": "storage.type.built-in.primitive"
+		},
+		"decl-keywords": {
+			"match": "\\b(interface|listener|struct|variant|enum)\\b",
+			"name": "storage.type"
+		},
+		"modifier-keywords": {
+			"match": "\\b(weak_ref|shared_ref|strong_ref|lite|options|bitfield|bg_thread|any_thread|native|platform|based on|const|readonly|gen)\\b",
+			"name": "storage.modifier"
+		},
+		"string-literal": {
+			"begin": "\"",
+			"end": "\"",
+			"name": "string.quoted.double",
+			"patterns": [
+				{
+					"match": "\\\\.",
+					"name": "constant.character.escape"
+				}
+			]
+		}
 	},
 	"scopeName": "source.idl"
 }

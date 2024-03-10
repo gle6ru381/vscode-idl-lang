@@ -4,22 +4,30 @@ import {ParseTreeListener} from "antlr4";
 
 
 import { ProgrammContext } from "./IdlParser";
-import { Top_declContext } from "./IdlParser";
-import { Import_exprContext } from "./IdlParser";
-import { Type_prefixContext } from "./IdlParser";
+import { TopDeclContext } from "./IdlParser";
+import { ImportExprContext } from "./IdlParser";
+import { TypePrefixContext } from "./IdlParser";
 import { DocumentationContext } from "./IdlParser";
-import { Documentation_tagContext } from "./IdlParser";
-import { Internal_declContext } from "./IdlParser";
-import { Interface_declContext } from "./IdlParser";
-import { Interface_ownershipContext } from "./IdlParser";
-import { Enum_declContext } from "./IdlParser";
-import { Variant_declContext } from "./IdlParser";
-import { Struct_declContext } from "./IdlParser";
-import { Struct_kindContext } from "./IdlParser";
-import { Listener_declContext } from "./IdlParser";
-import { Function_declContext } from "./IdlParser";
-import { Parameters_declContext } from "./IdlParser";
-import { Property_declContext } from "./IdlParser";
+import { DocumentationTagContext } from "./IdlParser";
+import { InterfaceDeclContext } from "./IdlParser";
+import { InterfaceOwnershipContext } from "./IdlParser";
+import { EnumDeclContext } from "./IdlParser";
+import { EnumFieldsDeclContext } from "./IdlParser";
+import { EnumFieldContext } from "./IdlParser";
+import { VariantDeclContext } from "./IdlParser";
+import { StructDeclContext } from "./IdlParser";
+import { StructKindContext } from "./IdlParser";
+import { ListenerDeclContext } from "./IdlParser";
+import { FunctionDeclContext } from "./IdlParser";
+import { ParametersDeclContext } from "./IdlParser";
+import { PropertyDeclContext } from "./IdlParser";
+import { StructFieldDeclContext } from "./IdlParser";
+import { TypeRefContext } from "./IdlParser";
+import { BasedProtoTopContext } from "./IdlParser";
+import { BasedProtoInternalContext } from "./IdlParser";
+import { SourceDeclContext } from "./IdlParser";
+import { ValueContext } from "./IdlParser";
+import { BinExprContext } from "./IdlParser";
 
 
 /**
@@ -38,35 +46,35 @@ export default class IdlParserListener extends ParseTreeListener {
 	 */
 	exitProgramm?: (ctx: ProgrammContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.top_decl`.
+	 * Enter a parse tree produced by `IdlParser.topDecl`.
 	 * @param ctx the parse tree
 	 */
-	enterTop_decl?: (ctx: Top_declContext) => void;
+	enterTopDecl?: (ctx: TopDeclContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.top_decl`.
+	 * Exit a parse tree produced by `IdlParser.topDecl`.
 	 * @param ctx the parse tree
 	 */
-	exitTop_decl?: (ctx: Top_declContext) => void;
+	exitTopDecl?: (ctx: TopDeclContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.import_expr`.
+	 * Enter a parse tree produced by `IdlParser.importExpr`.
 	 * @param ctx the parse tree
 	 */
-	enterImport_expr?: (ctx: Import_exprContext) => void;
+	enterImportExpr?: (ctx: ImportExprContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.import_expr`.
+	 * Exit a parse tree produced by `IdlParser.importExpr`.
 	 * @param ctx the parse tree
 	 */
-	exitImport_expr?: (ctx: Import_exprContext) => void;
+	exitImportExpr?: (ctx: ImportExprContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.type_prefix`.
+	 * Enter a parse tree produced by `IdlParser.typePrefix`.
 	 * @param ctx the parse tree
 	 */
-	enterType_prefix?: (ctx: Type_prefixContext) => void;
+	enterTypePrefix?: (ctx: TypePrefixContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.type_prefix`.
+	 * Exit a parse tree produced by `IdlParser.typePrefix`.
 	 * @param ctx the parse tree
 	 */
-	exitType_prefix?: (ctx: Type_prefixContext) => void;
+	exitTypePrefix?: (ctx: TypePrefixContext) => void;
 	/**
 	 * Enter a parse tree produced by `IdlParser.documentation`.
 	 * @param ctx the parse tree
@@ -78,124 +86,204 @@ export default class IdlParserListener extends ParseTreeListener {
 	 */
 	exitDocumentation?: (ctx: DocumentationContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.documentation_tag`.
+	 * Enter a parse tree produced by `IdlParser.documentationTag`.
 	 * @param ctx the parse tree
 	 */
-	enterDocumentation_tag?: (ctx: Documentation_tagContext) => void;
+	enterDocumentationTag?: (ctx: DocumentationTagContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.documentation_tag`.
+	 * Exit a parse tree produced by `IdlParser.documentationTag`.
 	 * @param ctx the parse tree
 	 */
-	exitDocumentation_tag?: (ctx: Documentation_tagContext) => void;
+	exitDocumentationTag?: (ctx: DocumentationTagContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.internal_decl`.
+	 * Enter a parse tree produced by `IdlParser.interfaceDecl`.
 	 * @param ctx the parse tree
 	 */
-	enterInternal_decl?: (ctx: Internal_declContext) => void;
+	enterInterfaceDecl?: (ctx: InterfaceDeclContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.internal_decl`.
+	 * Exit a parse tree produced by `IdlParser.interfaceDecl`.
 	 * @param ctx the parse tree
 	 */
-	exitInternal_decl?: (ctx: Internal_declContext) => void;
+	exitInterfaceDecl?: (ctx: InterfaceDeclContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.interface_decl`.
+	 * Enter a parse tree produced by `IdlParser.interfaceOwnership`.
 	 * @param ctx the parse tree
 	 */
-	enterInterface_decl?: (ctx: Interface_declContext) => void;
+	enterInterfaceOwnership?: (ctx: InterfaceOwnershipContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.interface_decl`.
+	 * Exit a parse tree produced by `IdlParser.interfaceOwnership`.
 	 * @param ctx the parse tree
 	 */
-	exitInterface_decl?: (ctx: Interface_declContext) => void;
+	exitInterfaceOwnership?: (ctx: InterfaceOwnershipContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.interface_ownership`.
+	 * Enter a parse tree produced by `IdlParser.enumDecl`.
 	 * @param ctx the parse tree
 	 */
-	enterInterface_ownership?: (ctx: Interface_ownershipContext) => void;
+	enterEnumDecl?: (ctx: EnumDeclContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.interface_ownership`.
+	 * Exit a parse tree produced by `IdlParser.enumDecl`.
 	 * @param ctx the parse tree
 	 */
-	exitInterface_ownership?: (ctx: Interface_ownershipContext) => void;
+	exitEnumDecl?: (ctx: EnumDeclContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.enum_decl`.
+	 * Enter a parse tree produced by `IdlParser.enumFieldsDecl`.
 	 * @param ctx the parse tree
 	 */
-	enterEnum_decl?: (ctx: Enum_declContext) => void;
+	enterEnumFieldsDecl?: (ctx: EnumFieldsDeclContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.enum_decl`.
+	 * Exit a parse tree produced by `IdlParser.enumFieldsDecl`.
 	 * @param ctx the parse tree
 	 */
-	exitEnum_decl?: (ctx: Enum_declContext) => void;
+	exitEnumFieldsDecl?: (ctx: EnumFieldsDeclContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.variant_decl`.
+	 * Enter a parse tree produced by `IdlParser.enumField`.
 	 * @param ctx the parse tree
 	 */
-	enterVariant_decl?: (ctx: Variant_declContext) => void;
+	enterEnumField?: (ctx: EnumFieldContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.variant_decl`.
+	 * Exit a parse tree produced by `IdlParser.enumField`.
 	 * @param ctx the parse tree
 	 */
-	exitVariant_decl?: (ctx: Variant_declContext) => void;
+	exitEnumField?: (ctx: EnumFieldContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.struct_decl`.
+	 * Enter a parse tree produced by `IdlParser.variantDecl`.
 	 * @param ctx the parse tree
 	 */
-	enterStruct_decl?: (ctx: Struct_declContext) => void;
+	enterVariantDecl?: (ctx: VariantDeclContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.struct_decl`.
+	 * Exit a parse tree produced by `IdlParser.variantDecl`.
 	 * @param ctx the parse tree
 	 */
-	exitStruct_decl?: (ctx: Struct_declContext) => void;
+	exitVariantDecl?: (ctx: VariantDeclContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.struct_kind`.
+	 * Enter a parse tree produced by `IdlParser.structDecl`.
 	 * @param ctx the parse tree
 	 */
-	enterStruct_kind?: (ctx: Struct_kindContext) => void;
+	enterStructDecl?: (ctx: StructDeclContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.struct_kind`.
+	 * Exit a parse tree produced by `IdlParser.structDecl`.
 	 * @param ctx the parse tree
 	 */
-	exitStruct_kind?: (ctx: Struct_kindContext) => void;
+	exitStructDecl?: (ctx: StructDeclContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.listener_decl`.
+	 * Enter a parse tree produced by `IdlParser.structKind`.
 	 * @param ctx the parse tree
 	 */
-	enterListener_decl?: (ctx: Listener_declContext) => void;
+	enterStructKind?: (ctx: StructKindContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.listener_decl`.
+	 * Exit a parse tree produced by `IdlParser.structKind`.
 	 * @param ctx the parse tree
 	 */
-	exitListener_decl?: (ctx: Listener_declContext) => void;
+	exitStructKind?: (ctx: StructKindContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.function_decl`.
+	 * Enter a parse tree produced by `IdlParser.listenerDecl`.
 	 * @param ctx the parse tree
 	 */
-	enterFunction_decl?: (ctx: Function_declContext) => void;
+	enterListenerDecl?: (ctx: ListenerDeclContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.function_decl`.
+	 * Exit a parse tree produced by `IdlParser.listenerDecl`.
 	 * @param ctx the parse tree
 	 */
-	exitFunction_decl?: (ctx: Function_declContext) => void;
+	exitListenerDecl?: (ctx: ListenerDeclContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.parameters_decl`.
+	 * Enter a parse tree produced by `IdlParser.functionDecl`.
 	 * @param ctx the parse tree
 	 */
-	enterParameters_decl?: (ctx: Parameters_declContext) => void;
+	enterFunctionDecl?: (ctx: FunctionDeclContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.parameters_decl`.
+	 * Exit a parse tree produced by `IdlParser.functionDecl`.
 	 * @param ctx the parse tree
 	 */
-	exitParameters_decl?: (ctx: Parameters_declContext) => void;
+	exitFunctionDecl?: (ctx: FunctionDeclContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.property_decl`.
+	 * Enter a parse tree produced by `IdlParser.parametersDecl`.
 	 * @param ctx the parse tree
 	 */
-	enterProperty_decl?: (ctx: Property_declContext) => void;
+	enterParametersDecl?: (ctx: ParametersDeclContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.property_decl`.
+	 * Exit a parse tree produced by `IdlParser.parametersDecl`.
 	 * @param ctx the parse tree
 	 */
-	exitProperty_decl?: (ctx: Property_declContext) => void;
+	exitParametersDecl?: (ctx: ParametersDeclContext) => void;
+	/**
+	 * Enter a parse tree produced by `IdlParser.propertyDecl`.
+	 * @param ctx the parse tree
+	 */
+	enterPropertyDecl?: (ctx: PropertyDeclContext) => void;
+	/**
+	 * Exit a parse tree produced by `IdlParser.propertyDecl`.
+	 * @param ctx the parse tree
+	 */
+	exitPropertyDecl?: (ctx: PropertyDeclContext) => void;
+	/**
+	 * Enter a parse tree produced by `IdlParser.structFieldDecl`.
+	 * @param ctx the parse tree
+	 */
+	enterStructFieldDecl?: (ctx: StructFieldDeclContext) => void;
+	/**
+	 * Exit a parse tree produced by `IdlParser.structFieldDecl`.
+	 * @param ctx the parse tree
+	 */
+	exitStructFieldDecl?: (ctx: StructFieldDeclContext) => void;
+	/**
+	 * Enter a parse tree produced by `IdlParser.typeRef`.
+	 * @param ctx the parse tree
+	 */
+	enterTypeRef?: (ctx: TypeRefContext) => void;
+	/**
+	 * Exit a parse tree produced by `IdlParser.typeRef`.
+	 * @param ctx the parse tree
+	 */
+	exitTypeRef?: (ctx: TypeRefContext) => void;
+	/**
+	 * Enter a parse tree produced by `IdlParser.basedProtoTop`.
+	 * @param ctx the parse tree
+	 */
+	enterBasedProtoTop?: (ctx: BasedProtoTopContext) => void;
+	/**
+	 * Exit a parse tree produced by `IdlParser.basedProtoTop`.
+	 * @param ctx the parse tree
+	 */
+	exitBasedProtoTop?: (ctx: BasedProtoTopContext) => void;
+	/**
+	 * Enter a parse tree produced by `IdlParser.basedProtoInternal`.
+	 * @param ctx the parse tree
+	 */
+	enterBasedProtoInternal?: (ctx: BasedProtoInternalContext) => void;
+	/**
+	 * Exit a parse tree produced by `IdlParser.basedProtoInternal`.
+	 * @param ctx the parse tree
+	 */
+	exitBasedProtoInternal?: (ctx: BasedProtoInternalContext) => void;
+	/**
+	 * Enter a parse tree produced by `IdlParser.sourceDecl`.
+	 * @param ctx the parse tree
+	 */
+	enterSourceDecl?: (ctx: SourceDeclContext) => void;
+	/**
+	 * Exit a parse tree produced by `IdlParser.sourceDecl`.
+	 * @param ctx the parse tree
+	 */
+	exitSourceDecl?: (ctx: SourceDeclContext) => void;
+	/**
+	 * Enter a parse tree produced by `IdlParser.value`.
+	 * @param ctx the parse tree
+	 */
+	enterValue?: (ctx: ValueContext) => void;
+	/**
+	 * Exit a parse tree produced by `IdlParser.value`.
+	 * @param ctx the parse tree
+	 */
+	exitValue?: (ctx: ValueContext) => void;
+	/**
+	 * Enter a parse tree produced by `IdlParser.binExpr`.
+	 * @param ctx the parse tree
+	 */
+	enterBinExpr?: (ctx: BinExprContext) => void;
+	/**
+	 * Exit a parse tree produced by `IdlParser.binExpr`.
+	 * @param ctx the parse tree
+	 */
+	exitBinExpr?: (ctx: BinExprContext) => void;
 }
 

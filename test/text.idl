@@ -4,9 +4,18 @@ import "my.idl";
 
 // Doc @internal
 weak_ref interface MyInterface {
+    /*
+    Multiline doc @internal with tag @undocumented.
+    */
     listener InternalListener {
         void onEvent(int param, int secondParam);
     }
 
     int parameter;
+    readonly bitmap image;
+    void method(const string str);
+}
+
+lite struct MyStruct based on "file.proto":MyStruct {
+    string key based on key;
 }

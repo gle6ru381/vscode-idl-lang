@@ -4,22 +4,30 @@ import {ParseTreeVisitor} from 'antlr4';
 
 
 import { ProgrammContext } from "./IdlParser";
-import { Top_declContext } from "./IdlParser";
-import { Import_exprContext } from "./IdlParser";
-import { Type_prefixContext } from "./IdlParser";
+import { TopDeclContext } from "./IdlParser";
+import { ImportExprContext } from "./IdlParser";
+import { TypePrefixContext } from "./IdlParser";
 import { DocumentationContext } from "./IdlParser";
-import { Documentation_tagContext } from "./IdlParser";
-import { Internal_declContext } from "./IdlParser";
-import { Interface_declContext } from "./IdlParser";
-import { Interface_ownershipContext } from "./IdlParser";
-import { Enum_declContext } from "./IdlParser";
-import { Variant_declContext } from "./IdlParser";
-import { Struct_declContext } from "./IdlParser";
-import { Struct_kindContext } from "./IdlParser";
-import { Listener_declContext } from "./IdlParser";
-import { Function_declContext } from "./IdlParser";
-import { Parameters_declContext } from "./IdlParser";
-import { Property_declContext } from "./IdlParser";
+import { DocumentationTagContext } from "./IdlParser";
+import { InterfaceDeclContext } from "./IdlParser";
+import { InterfaceOwnershipContext } from "./IdlParser";
+import { EnumDeclContext } from "./IdlParser";
+import { EnumFieldsDeclContext } from "./IdlParser";
+import { EnumFieldContext } from "./IdlParser";
+import { VariantDeclContext } from "./IdlParser";
+import { StructDeclContext } from "./IdlParser";
+import { StructKindContext } from "./IdlParser";
+import { ListenerDeclContext } from "./IdlParser";
+import { FunctionDeclContext } from "./IdlParser";
+import { ParametersDeclContext } from "./IdlParser";
+import { PropertyDeclContext } from "./IdlParser";
+import { StructFieldDeclContext } from "./IdlParser";
+import { TypeRefContext } from "./IdlParser";
+import { BasedProtoTopContext } from "./IdlParser";
+import { BasedProtoInternalContext } from "./IdlParser";
+import { SourceDeclContext } from "./IdlParser";
+import { ValueContext } from "./IdlParser";
+import { BinExprContext } from "./IdlParser";
 
 
 /**
@@ -37,23 +45,23 @@ export default class IdlParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 */
 	visitProgramm?: (ctx: ProgrammContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.top_decl`.
+	 * Visit a parse tree produced by `IdlParser.topDecl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitTop_decl?: (ctx: Top_declContext) => Result;
+	visitTopDecl?: (ctx: TopDeclContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.import_expr`.
+	 * Visit a parse tree produced by `IdlParser.importExpr`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitImport_expr?: (ctx: Import_exprContext) => Result;
+	visitImportExpr?: (ctx: ImportExprContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.type_prefix`.
+	 * Visit a parse tree produced by `IdlParser.typePrefix`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitType_prefix?: (ctx: Type_prefixContext) => Result;
+	visitTypePrefix?: (ctx: TypePrefixContext) => Result;
 	/**
 	 * Visit a parse tree produced by `IdlParser.documentation`.
 	 * @param ctx the parse tree
@@ -61,76 +69,124 @@ export default class IdlParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 */
 	visitDocumentation?: (ctx: DocumentationContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.documentation_tag`.
+	 * Visit a parse tree produced by `IdlParser.documentationTag`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitDocumentation_tag?: (ctx: Documentation_tagContext) => Result;
+	visitDocumentationTag?: (ctx: DocumentationTagContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.internal_decl`.
+	 * Visit a parse tree produced by `IdlParser.interfaceDecl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitInternal_decl?: (ctx: Internal_declContext) => Result;
+	visitInterfaceDecl?: (ctx: InterfaceDeclContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.interface_decl`.
+	 * Visit a parse tree produced by `IdlParser.interfaceOwnership`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitInterface_decl?: (ctx: Interface_declContext) => Result;
+	visitInterfaceOwnership?: (ctx: InterfaceOwnershipContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.interface_ownership`.
+	 * Visit a parse tree produced by `IdlParser.enumDecl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitInterface_ownership?: (ctx: Interface_ownershipContext) => Result;
+	visitEnumDecl?: (ctx: EnumDeclContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.enum_decl`.
+	 * Visit a parse tree produced by `IdlParser.enumFieldsDecl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitEnum_decl?: (ctx: Enum_declContext) => Result;
+	visitEnumFieldsDecl?: (ctx: EnumFieldsDeclContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.variant_decl`.
+	 * Visit a parse tree produced by `IdlParser.enumField`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitVariant_decl?: (ctx: Variant_declContext) => Result;
+	visitEnumField?: (ctx: EnumFieldContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.struct_decl`.
+	 * Visit a parse tree produced by `IdlParser.variantDecl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitStruct_decl?: (ctx: Struct_declContext) => Result;
+	visitVariantDecl?: (ctx: VariantDeclContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.struct_kind`.
+	 * Visit a parse tree produced by `IdlParser.structDecl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitStruct_kind?: (ctx: Struct_kindContext) => Result;
+	visitStructDecl?: (ctx: StructDeclContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.listener_decl`.
+	 * Visit a parse tree produced by `IdlParser.structKind`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitListener_decl?: (ctx: Listener_declContext) => Result;
+	visitStructKind?: (ctx: StructKindContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.function_decl`.
+	 * Visit a parse tree produced by `IdlParser.listenerDecl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitFunction_decl?: (ctx: Function_declContext) => Result;
+	visitListenerDecl?: (ctx: ListenerDeclContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.parameters_decl`.
+	 * Visit a parse tree produced by `IdlParser.functionDecl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitParameters_decl?: (ctx: Parameters_declContext) => Result;
+	visitFunctionDecl?: (ctx: FunctionDeclContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.property_decl`.
+	 * Visit a parse tree produced by `IdlParser.parametersDecl`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitProperty_decl?: (ctx: Property_declContext) => Result;
+	visitParametersDecl?: (ctx: ParametersDeclContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.propertyDecl`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitPropertyDecl?: (ctx: PropertyDeclContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.structFieldDecl`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitStructFieldDecl?: (ctx: StructFieldDeclContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.typeRef`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitTypeRef?: (ctx: TypeRefContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.basedProtoTop`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitBasedProtoTop?: (ctx: BasedProtoTopContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.basedProtoInternal`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitBasedProtoInternal?: (ctx: BasedProtoInternalContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.sourceDecl`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitSourceDecl?: (ctx: SourceDeclContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.value`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitValue?: (ctx: ValueContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.binExpr`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitBinExpr?: (ctx: BinExprContext) => Result;
 }
 

@@ -12,7 +12,7 @@ const tokenTypes = [
     "property", "comment", "string", "keyword", "number", "operator", "type",
     "parameter", "decorator"
 ];
-const tokenModifiers = ["declaration", "definition", "static", "documentation", "readonly"];
+const tokenModifiers = ["declaration", "definition", "static", "documentation", "readonly", "deprecated"];
 const legend = new vscode.SemanticTokensLegend(tokenTypes, tokenModifiers);
 
 let debug = vscode.window.createOutputChannel("IdlDebug");

@@ -2,37 +2,54 @@ parser grammar IdlParser;
 
 options { tokenVocab=IdlLexer; }
 
-programm: type_prefix? import_expr* top_decl*;
+programm: typePrefix? importExpr* topDecl*;
 
-top_decl: documentation? (interface_decl | enum_decl | variant_decl | struct_decl | listener_decl) IDENTIFIER LBRACE (top_decl | internal_decl)* RBRACE;
+topDecl: documentation? (interfaceDecl | enumDecl | variantDecl | structDecl | listenerDecl);
 
-import_expr: IMPORT STR_LITERAL SEMICOLON;
-type_prefix: TYPE_PREFIX IDENTIFIER SEMICOLON;
+importExpr: IMPORT STR_LITERAL SEMICOLON;
+typePrefix: TYPE_PREFIX IDENTIFIER SEMICOLON;
 
-documentation: DOC_BEGIN (DOC_TEXT | documentation_tag)* DOC_END;
-documentation_tag:
+documentation: DOC_BEGIN (DOC_TEXT | documentationTag)* DOC_END;
+documentationTag:
         DOC_COMMERCIAL 
         | DOC_INTERNAL
         | DOC_DEPRECATED
         | DOC_UNDOCUMENTED;
 
-internal_decl: function_decl | property_decl;
+interfaceDecl: (STATIC? VIRTUAL? VIEW_DELEGATE? interfaceOwnership? INTERFACE
+                | NATIVE LISTENER) IDENTIFIER LBRACE (functionDecl | propertyDecl | topDecl)* RBRACE;
+interfaceOwnership: SHARED_REF | WEAK_REF;
 
-interface_decl: (VIRTUAL? VIEW_DELEGATE? interface_ownership? INTERFACE)
-                | (NATIVE LISTENER);
-interface_ownership: SHARED_REF | WEAK_REF;
+enumDecl: sourceDecl? BITFIELD? ENUM IDENTIFIER basedProtoTop? LBRACE enumFieldsDecl RBRACE;
+enumFieldsDecl: enumField (COMMA enumField)* COMMA?;
+enumField: IDENTIFIER | (IDENTIFIER ASSIGN INT_LITERAL (LSHIFT INT_LITERAL)?);
 
-enum_decl: BITFIELD? ENUM;
+variantDecl: sourceDecl? VARIANT IDENTIFIER LBRACE structFieldDecl* RBRACE;
 
-variant_decl: VARIANT;
+structDecl: sourceDecl? ABSTRACT? SERIALIZABLE? structKind? STRUCT IDENTIFIER basedProtoTop? LBRACE structFieldDecl* RBRACE;
+structKind: LITE | OPTIONS;
 
-struct_decl: SERIALIZABLE? struct_kind? STRUCT;
-struct_kind: LITE | OPTIONS;
+listenerDecl: (STRONG_REF PLATFORM INTERFACE | LISTENER) IDENTIFIER LBRACE (functionDecl | topDecl)* RBRACE;
 
-listener_decl: STRONG_REF PLATFORM INTERFACE | LISTENER;
+functionDecl: typeRef Name=IDENTIFIER LPAREN parametersDecl? RPAREN SEMICOLON;
 
-function_decl: RetType=IDENTIFIER Name=IDENTIFIER LPAREN parameters_decl? RPAREN SEMICOLON;
+parametersDecl: CONST? typeRef IDENTIFIER (COMMA CONST? typeRef IDENTIFIER)* COMMA?;
 
-parameters_decl: IDENTIFIER IDENTIFIER (COMMA IDENTIFIER IDENTIFIER)* COMMA?;
+propertyDecl: GEN? CONST? READONLY? OPTIONAL? typeRef IDENTIFIER SEMICOLON;
+structFieldDecl: OPTIONAL? typeRef Name=IDENTIFIER basedProtoInternal? SEMICOLON;
 
-property_decl: IDENTIFIER IDENTIFIER SEMICOLON;
+typeRef: GlobalNs=DOT? IDENTIFIER (DOT IDENTIFIER)*;
+
+basedProtoTop: BASED_ON STR_LITERAL COLON typeRef;
+basedProtoInternal: BASED_ON IDENTIFIER;
+sourceDecl: CPP STR_LITERAL;
+
+value: INT_LITERAL
+     | STR_LITERAL
+     | FLOAT_LITERAL
+     | DOUBLE_LITERAL
+     | typeRef;
+
+binExpr: value BINOR value
+       | value LSHIFT value
+       | value ASSIGN value;
