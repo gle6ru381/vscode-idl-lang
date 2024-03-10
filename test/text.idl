@@ -1,0 +1,12 @@
+type_prefix MyPrefix;
+
+import "my.idl";
+
+// Doc @internal
+weak_ref interface MyInterface {
+    listener InternalListener {
+        void onEvent(int param, int secondParam);
+    }
+
+    int parameter;
+}

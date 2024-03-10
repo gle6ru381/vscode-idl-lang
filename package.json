@@ -1,0 +1,59 @@
+{
+  "name": "idl-lang",
+  "displayName": "idl-lang",
+  "description": "Syntax highlight for mapkit idl",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./out/parser.js",
+  "contributes": {
+    "configurationDefaults": {
+      "[idl]": {
+        "editor.semanticHighlighting.enabled": true
+      }
+    },
+    "languages": [
+      {
+        "id": "idl",
+        "aliases": [
+          "idl",
+          "idl"
+        ],
+        "extensions": [
+          ".idl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "idl",
+        "scopeName": "source.idl",
+        "path": "./syntaxes/idl.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "antlr-generate": "antlr4 -Dlanguage=TypeScript ./grammar/IdlLexer.g4 ./grammar/IdlParser.g4 -visitor -o ./src/ -lib ./src/grammar"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.3",
+    "@types/node": "^18.19.22",
+    "@types/vscode": "^1.84.1",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "antlr4": "^4.13.1",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  }
+}

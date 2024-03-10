@@ -1,0 +1,6 @@
+import "My Import";
+
+// Comment @internal
+weak_ref interface {
+    void func();
+}
