@@ -20,6 +20,7 @@ import { StructKindContext } from "./IdlParser";
 import { ListenerDeclContext } from "./IdlParser";
 import { FunctionDeclContext } from "./IdlParser";
 import { ParametersDeclContext } from "./IdlParser";
+import { ParameterContext } from "./IdlParser";
 import { PropertyDeclContext } from "./IdlParser";
 import { StructFieldDeclContext } from "./IdlParser";
 import { TypeRefContext } from "./IdlParser";
@@ -140,6 +141,12 @@ export default class IdlParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitParametersDecl?: (ctx: ParametersDeclContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.parameter`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitParameter?: (ctx: ParameterContext) => Result;
 	/**
 	 * Visit a parse tree produced by `IdlParser.propertyDecl`.
 	 * @param ctx the parse tree

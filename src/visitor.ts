@@ -16,6 +16,7 @@ import {
     InterfaceDeclContext,
     InterfaceOwnershipContext,
     ListenerDeclContext,
+    ParameterContext,
     ParametersDeclContext,
     ProgrammContext,
     PropertyDeclContext,
@@ -156,11 +157,13 @@ export default class HighlightVisitor extends IdlParserVisitor<void> {
     };
 
     visitParametersDecl = (ctx: ParametersDeclContext) => {
-        ctx.IDENTIFIER_list().forEach((value) => {
-            this.pushToken(value.symbol, 'parameter');
-        });
-
         this.visitChildren(ctx);
+    };
+
+    visitParameter = (ctx: ParameterContext) => {
+        this.pushToken(ctx._Label, 'parameter');
+        this.pushToken(ctx._Name, 'parameter');
+        this.visit(ctx._Type);
     };
 
     visitPropertyDecl = (ctx: PropertyDeclContext) => {

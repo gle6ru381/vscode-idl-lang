@@ -2,6 +2,10 @@ type_prefix MyPrefix;
 
 import "my.idl";
 
+static interface Navigation {
+    optional Navigation 
+}
+
 // Doc @internal
 weak_ref interface MyInterface (dart: myname) {
     /*

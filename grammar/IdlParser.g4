@@ -33,12 +33,13 @@ listenerDecl: documentation? (STRONG_REF? PLATFORM INTERFACE | LAMBDA? LISTENER)
 
 functionDecl: documentation? typeRef Name=IDENTIFIER (LANGLE customizableNameDecl RANGLE)? LPAREN parametersDecl? RPAREN SEMICOLON;
 
-parametersDecl: CONST? typeRef IDENTIFIER (COMMA CONST? typeRef IDENTIFIER)* COMMA?;
+parametersDecl: parameter (COMMA parameter)* COMMA?;
+parameter: CONST? (Label=IDENTIFIER COLON)? Type=typeRef Name=IDENTIFIER;
 
-propertyDecl: documentation? GEN? OPTIONAL? typeRef IDENTIFIER READONLY? SEMICOLON;
-structFieldDecl: Doc=documentation? OPTIONAL? Type=typeRef Name=IDENTIFIER Based=basedProtoInternal? (ASSIGN Expr=expr)? SEMICOLON;
+propertyDecl: documentation? GEN? typeRef IDENTIFIER READONLY? SEMICOLON;
+structFieldDecl: Doc=documentation? Type=typeRef Name=IDENTIFIER Based=basedProtoInternal? (ASSIGN Expr=expr)? SEMICOLON;
 
-typeRef: GlobalNs=DOT? IDENTIFIER (DOT IDENTIFIER)* (LANGLE typeRef (COMMA typeRef)* RANGLE)?;
+typeRef: OPTIONAL? GlobalNs=DOT? IDENTIFIER (DOT IDENTIFIER)* (LANGLE typeRef (COMMA typeRef)* RANGLE)?;
 
 customizableNameDecl: (CPP|JAVA|KMP|OBJC|SWIFT|DART) COLON IDENTIFIER (COMMA (CPP|JAVA|KMP|OBJC|SWIFT|DART) COLON IDENTIFIER)* COMMA?;
 
