@@ -9,7 +9,7 @@ import HighlightVisitor from './visitor';
 
 const tokenTypes = [
     "interface", "namespace", "enum", "struct", "enumMember", "method",
-    "property", "comment", "string", "keyword", "number", "operator", "type",
+    "property", "comment", "string", "keyword", "number", "operator", "type", "variable",
     "parameter", "decorator"
 ];
 const tokenModifiers = ["declaration", "definition", "static", "documentation", "readonly", "deprecated"];

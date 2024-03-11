@@ -50,10 +50,12 @@
     "@types/vscode": "^1.84.1",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
-    "antlr4": "^4.13.1",
     "eslint": "^8.52.0",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "antlr4": "^4.13.1"
   }
 }

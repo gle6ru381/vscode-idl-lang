@@ -18,6 +18,8 @@ COMMA: ',';
 DOT: '.';
 COLON: ':';
 SEMICOLON: ';';
+LANGLE: '<';
+RANGLE: '>';
 
 CPP: 'cpp';
 JAVA: 'java';

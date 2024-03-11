@@ -23,11 +23,11 @@ import { ParametersDeclContext } from "./IdlParser";
 import { PropertyDeclContext } from "./IdlParser";
 import { StructFieldDeclContext } from "./IdlParser";
 import { TypeRefContext } from "./IdlParser";
+import { CustomizableNameDeclContext } from "./IdlParser";
 import { BasedProtoTopContext } from "./IdlParser";
 import { BasedProtoInternalContext } from "./IdlParser";
 import { SourceDeclContext } from "./IdlParser";
-import { ValueContext } from "./IdlParser";
-import { BinExprContext } from "./IdlParser";
+import { ExprContext } from "./IdlParser";
 
 
 /**
@@ -159,6 +159,12 @@ export default class IdlParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 */
 	visitTypeRef?: (ctx: TypeRefContext) => Result;
 	/**
+	 * Visit a parse tree produced by `IdlParser.customizableNameDecl`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCustomizableNameDecl?: (ctx: CustomizableNameDeclContext) => Result;
+	/**
 	 * Visit a parse tree produced by `IdlParser.basedProtoTop`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -177,16 +183,10 @@ export default class IdlParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 */
 	visitSourceDecl?: (ctx: SourceDeclContext) => Result;
 	/**
-	 * Visit a parse tree produced by `IdlParser.value`.
+	 * Visit a parse tree produced by `IdlParser.expr`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	visitValue?: (ctx: ValueContext) => Result;
-	/**
-	 * Visit a parse tree produced by `IdlParser.binExpr`.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	visitBinExpr?: (ctx: BinExprContext) => Result;
+	visitExpr?: (ctx: ExprContext) => Result;
 }
 

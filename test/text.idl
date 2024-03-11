@@ -3,12 +3,12 @@ type_prefix MyPrefix;
 import "my.idl";
 
 // Doc @internal
-weak_ref interface MyInterface {
+weak_ref interface MyInterface (dart: myname) {
     /*
     Multiline doc @internal with tag @undocumented.
     */
     listener InternalListener {
-        void onEvent(int param, int secondParam);
+        void onEvent<dart: onEventDart, cpp: onEventNative>(int param, int secondParam);
     }
 
     int parameter;
@@ -17,5 +17,16 @@ weak_ref interface MyInterface {
 }
 
 lite struct MyStruct based on "file.proto":MyStruct {
+    enum Orientation {
+        // Left orientation
+        Left,
+        // Right orientation
+        Right
+    }
+
+    // Orientation
+    MyStruct.Orientation orientation = Orientation.Right;
+
+    // doc
     string key based on key;
 }

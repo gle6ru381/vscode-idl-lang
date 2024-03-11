@@ -23,11 +23,11 @@ import { ParametersDeclContext } from "./IdlParser";
 import { PropertyDeclContext } from "./IdlParser";
 import { StructFieldDeclContext } from "./IdlParser";
 import { TypeRefContext } from "./IdlParser";
+import { CustomizableNameDeclContext } from "./IdlParser";
 import { BasedProtoTopContext } from "./IdlParser";
 import { BasedProtoInternalContext } from "./IdlParser";
 import { SourceDeclContext } from "./IdlParser";
-import { ValueContext } from "./IdlParser";
-import { BinExprContext } from "./IdlParser";
+import { ExprContext } from "./IdlParser";
 
 
 /**
@@ -236,6 +236,16 @@ export default class IdlParserListener extends ParseTreeListener {
 	 */
 	exitTypeRef?: (ctx: TypeRefContext) => void;
 	/**
+	 * Enter a parse tree produced by `IdlParser.customizableNameDecl`.
+	 * @param ctx the parse tree
+	 */
+	enterCustomizableNameDecl?: (ctx: CustomizableNameDeclContext) => void;
+	/**
+	 * Exit a parse tree produced by `IdlParser.customizableNameDecl`.
+	 * @param ctx the parse tree
+	 */
+	exitCustomizableNameDecl?: (ctx: CustomizableNameDeclContext) => void;
+	/**
 	 * Enter a parse tree produced by `IdlParser.basedProtoTop`.
 	 * @param ctx the parse tree
 	 */
@@ -266,24 +276,14 @@ export default class IdlParserListener extends ParseTreeListener {
 	 */
 	exitSourceDecl?: (ctx: SourceDeclContext) => void;
 	/**
-	 * Enter a parse tree produced by `IdlParser.value`.
+	 * Enter a parse tree produced by `IdlParser.expr`.
 	 * @param ctx the parse tree
 	 */
-	enterValue?: (ctx: ValueContext) => void;
+	enterExpr?: (ctx: ExprContext) => void;
 	/**
-	 * Exit a parse tree produced by `IdlParser.value`.
+	 * Exit a parse tree produced by `IdlParser.expr`.
 	 * @param ctx the parse tree
 	 */
-	exitValue?: (ctx: ValueContext) => void;
-	/**
-	 * Enter a parse tree produced by `IdlParser.binExpr`.
-	 * @param ctx the parse tree
-	 */
-	enterBinExpr?: (ctx: BinExprContext) => void;
-	/**
-	 * Exit a parse tree produced by `IdlParser.binExpr`.
-	 * @param ctx the parse tree
-	 */
-	exitBinExpr?: (ctx: BinExprContext) => void;
+	exitExpr?: (ctx: ExprContext) => void;
 }
 

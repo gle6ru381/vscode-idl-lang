@@ -13,6 +13,9 @@
 		},
 		{
 			"include": "#string-literal"
+		},
+		{
+			"include": "#digit"
 		}
 	],
 	"repository": {
@@ -25,7 +28,7 @@
 			"name": "storage.type"
 		},
 		"modifier-keywords": {
-			"match": "\\b(weak_ref|shared_ref|strong_ref|lite|options|bitfield|bg_thread|any_thread|native|platform|based on|const|readonly|gen)\\b",
+			"match": "\\b(weak_ref|shared_ref|strong_ref|lite|options|bitfield|bg_thread|any_thread|native|platform|based on|const|readonly|gen|optional|lambda|static|virtual)\\b",
 			"name": "storage.modifier"
 		},
 		"string-literal": {
@@ -38,6 +41,10 @@
 					"name": "constant.character.escape"
 				}
 			]
+		},
+		"digit": {
+			"match": "\\b(-?[0-9]+|0x[0-9afA-F]+|-?[0-9]+'.'[0-9]*f?|[0-9]*'.'[0-9]+f?)\\b",
+			"name": "constant.numeric"
 		}
 	},
 	"scopeName": "source.idl"
