@@ -38,7 +38,7 @@ parametersDecl: CONST? typeRef IDENTIFIER (COMMA CONST? typeRef IDENTIFIER)* COM
 propertyDecl: documentation? GEN? OPTIONAL? typeRef IDENTIFIER READONLY? SEMICOLON;
 structFieldDecl: Doc=documentation? OPTIONAL? Type=typeRef Name=IDENTIFIER Based=basedProtoInternal? (ASSIGN Expr=expr)? SEMICOLON;
 
-typeRef: GlobalNs=DOT? IDENTIFIER (DOT IDENTIFIER)*;
+typeRef: GlobalNs=DOT? IDENTIFIER (DOT IDENTIFIER)* (LANGLE typeRef (COMMA typeRef)* RANGLE)?;
 
 customizableNameDecl: (CPP|JAVA|KMP|OBJC|SWIFT|DART) COLON IDENTIFIER (COMMA (CPP|JAVA|KMP|OBJC|SWIFT|DART) COLON IDENTIFIER)* COMMA?;
 

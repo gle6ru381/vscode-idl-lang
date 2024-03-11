@@ -11,8 +11,9 @@ weak_ref interface MyInterface (dart: myname) {
         void onEvent<dart: onEventDart, cpp: onEventNative>(int param, int secondParam);
     }
 
+    vector<int> val;
     int parameter;
-    readonly bitmap image;
+    bitmap image readonly;
     void method(const string str);
 }
 

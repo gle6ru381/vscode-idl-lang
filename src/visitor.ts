@@ -129,6 +129,8 @@ export default class HighlightVisitor extends IdlParserVisitor<void> {
     };
 
     visitVariantDecl = (ctx: VariantDeclContext) => {
+        this.pushToken(ctx.IDENTIFIER().symbol, 'struct', ['declaration']);
+
         this.visitChildren(ctx);
     };
 
@@ -206,6 +208,8 @@ export default class HighlightVisitor extends IdlParserVisitor<void> {
                 }
             });
         }
+
+        this.visitChildren(ctx);
     };
 
     visitCustomizableNameDecl = (ctx: CustomizableNameDeclContext) => {

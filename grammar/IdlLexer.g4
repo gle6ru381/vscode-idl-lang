@@ -38,10 +38,6 @@ OPTIONAL: 'optional';
 BG_THREAD: 'bg_thread';
 ANY_THREAD: 'any_thread';
 
-VECTOR: 'vector';
-DICTIONARY: 'dictionary';
-TYPE_DICTIONARY: 'type_dictionary';
-
 BASED_ON: 'based on';
 
 SERIALIZABLE: 'serializable';

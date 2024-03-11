@@ -28,7 +28,7 @@
 			"name": "storage.type"
 		},
 		"modifier-keywords": {
-			"match": "\\b(weak_ref|shared_ref|strong_ref|lite|options|bitfield|bg_thread|any_thread|native|platform|based on|const|readonly|gen|optional|lambda|static|virtual)\\b",
+			"match": "\\b(weak_ref|shared_ref|strong_ref|lite|options|bitfield|bg_thread|any_thread|native|platform|based on|const|readonly|gen|optional|lambda|static|virtual|abstract|serializable)\\b",
 			"name": "storage.modifier"
 		},
 		"string-literal": {
