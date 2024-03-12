@@ -4,10 +4,15 @@ tokens {
     DOC_BEGIN,
     DOC_END,
     DOC_TEXT,
-    DOC_INTERNAL,
-    DOC_COMMERCIAL,
-    DOC_DEPRECATED,
-    DOC_UNDOCUMENTED
+    COMMERCIAL_TAG,
+    INTERNAL_TAG,
+    DEPRECATED_TAG,
+    COMMERCIAL_TAG,
+    UNDOCUMENTED_TAG,
+    LINK_TAG_BEGIN,
+    LINK_TAG_END,
+    PARAM_TAG,
+    RETURN_TAG
 }
 
 LBRACE: '{';
@@ -20,6 +25,7 @@ COLON: ':';
 SEMICOLON: ';';
 LANGLE: '<';
 RANGLE: '>';
+NUM: '#';
 
 CPP: 'cpp';
 JAVA: 'java';
@@ -81,24 +87,49 @@ SINGLE_LINE_DOC_BEGIN: '//' -> pushMode(SINGLE_LINE_DOC), type(DOC_BEGIN);
 MULTI_LINE_DOC_BEGIN: '/*' -> pushMode(MULTI_LINE_DOC), type(DOC_BEGIN);
 
 NEWLINE: [\r\n]+ -> skip ;
-SPACE: ' ' -> skip;
+SPACE: [ \t] -> skip;
 
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
 
 mode SINGLE_LINE_DOC;
     SINGLE_END_COMMENT: [\r\n] -> popMode, type(DOC_END);
-    SINGLE_COMMERCIAL: '@commercial' -> type(DOC_COMMERCIAL);
-    SINGLE_INTERNAL: '@internal' -> type(DOC_INTERNAL);
-    SINGLE_DEPRECATED: '@deprecated' -> type(DOC_DEPRECATED);
-    SIGNLE_UNDOCUMENTED: '@undocumented' -> type(DOC_UNDOCUMENTED);
-    SINGLE_TEXT: ~[@\r\n]+ -> type(DOC_TEXT);
+    SINGLE_COMMERCIAL: '@commercial' -> type(COMMERCIAL_TAG);
+    SINGLE_INTERNAL: '@internal' -> type(INTERNAL_TAG);
+    SINGLE_DEPRECATED: '@deprecated' -> type(DEPRECATED_TAG);
+    SINGLE_UNDOCUMENTED: '@undocumented' -> type(UNDOCUMENTED_TAG);
+    SINGLE_LINK: '{@link' -> type(LINK_TAG_BEGIN), pushMode(DOC_LINK);
+    SINGLE_PARAM: '@param' -> type(PARAM_TAG), pushMode(DOC_PARAM);
+    SINGLE_RETURN: '@return' -> type(RETURN_TAG);
+    SINGLE_LBRACE: '{' -> type(LBRACE);
+    SINGLE_RBRACE: '}' -> type(RBRACE);
+    SINGLE_LPAREN: '(' -> type(LPAREN);
+    SINGLE_RPAREN: ')' -> type(RPAREN);
+    SINGLE_NUM: '#' -> type(NUM);
+    SINGLE_TEXT: ~[\r\n({?@)]+ -> type(DOC_TEXT);
+    SINGLE_IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]* -> type(IDENTIFIER);
     SIGNLE_SYMBOL: . -> type(DOC_TEXT);
 
 mode MULTI_LINE_DOC;
     MULTI_END_COMMENT: '*/' -> popMode, type(DOC_END);
-    MULTI_COMMERCIAL: '@commercial' -> type(DOC_COMMERCIAL);
-    MULTI_INTERNAL: '@internal' -> type(DOC_INTERNAL);
-    MULTI_DEPRECATED: '@deprecated' -> type(DOC_DEPRECATED);
-    MULTI_UNDOCUMENTED: '@undocumented' -> type(DOC_UNDOCUMENTED);
-    MULTI_TEXT: ~[@\r\n(*/)]+ -> type(DOC_TEXT);
+    MULTI_COMMERCIAL: '@commercial' -> type(COMMERCIAL_TAG);
+    MULTI_INTERNAL: '@internal' -> type(INTERNAL_TAG);
+    MULTI_DEPRECATED: '@deprecated' -> type(DEPRECATED_TAG);
+    MULTI_UNDOCUMENTED: '@undocumented' -> type(UNDOCUMENTED_TAG);
+    MULTI_LINK: '{@link' -> type(LINK_TAG_BEGIN), pushMode(DOC_LINK);
+    MULTI_PARAM: '@param' -> type(PARAM_TAG), pushMode(DOC_PARAM);
+    MULTI_RETURN: '@return' -> type(RETURN_TAG);
+    MULTI_TEXT: ~[\r\n(*/|{?@)]+ -> type(DOC_TEXT);
     MULTI_SYMBOL: . -> type(DOC_TEXT);
+
+mode DOC_LINK;
+    LINK_IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]* -> type(IDENTIFIER);
+    LINK_DOT: '.' -> type(DOT);
+    LINK_NUM: '#' -> type(NUM);
+    LINK_LPAREN: '(' -> type(LPAREN);
+    LINK_RPAREN: ')' -> type(RPAREN);
+    LINK_COMMA: ',' -> type(COMMA);
+    LINK_END: '}' -> type(LINK_TAG_END), popMode;
+    LINK_SPACE: [ \t] -> skip;
+
+mode DOC_PARAM;
+    PARAM_IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]* -> type(IDENTIFIER), popMode;

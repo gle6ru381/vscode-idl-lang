@@ -8,7 +8,12 @@ import { TopDeclContext } from "./IdlParser";
 import { ImportExprContext } from "./IdlParser";
 import { TypePrefixContext } from "./IdlParser";
 import { DocumentationContext } from "./IdlParser";
+import { DocumentationBlockContext } from "./IdlParser";
 import { DocumentationTagContext } from "./IdlParser";
+import { DocumentationLinkContext } from "./IdlParser";
+import { DocumentationParamContext } from "./IdlParser";
+import { DocumentationReturnContext } from "./IdlParser";
+import { ParametersRefContext } from "./IdlParser";
 import { InterfaceDeclContext } from "./IdlParser";
 import { InterfaceOwnershipContext } from "./IdlParser";
 import { EnumDeclContext } from "./IdlParser";
@@ -70,11 +75,41 @@ export default class IdlParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 */
 	visitDocumentation?: (ctx: DocumentationContext) => Result;
 	/**
+	 * Visit a parse tree produced by `IdlParser.documentationBlock`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitDocumentationBlock?: (ctx: DocumentationBlockContext) => Result;
+	/**
 	 * Visit a parse tree produced by `IdlParser.documentationTag`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	visitDocumentationTag?: (ctx: DocumentationTagContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.documentationLink`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitDocumentationLink?: (ctx: DocumentationLinkContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.documentationParam`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitDocumentationParam?: (ctx: DocumentationParamContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.documentationReturn`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitDocumentationReturn?: (ctx: DocumentationReturnContext) => Result;
+	/**
+	 * Visit a parse tree produced by `IdlParser.parametersRef`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitParametersRef?: (ctx: ParametersRefContext) => Result;
 	/**
 	 * Visit a parse tree produced by `IdlParser.interfaceDecl`.
 	 * @param ctx the parse tree

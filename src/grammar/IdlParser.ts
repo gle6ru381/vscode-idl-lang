@@ -22,111 +22,125 @@ export default class IdlParser extends Parser {
 	public static readonly DOC_BEGIN = 1;
 	public static readonly DOC_END = 2;
 	public static readonly DOC_TEXT = 3;
-	public static readonly DOC_INTERNAL = 4;
-	public static readonly DOC_COMMERCIAL = 5;
-	public static readonly DOC_DEPRECATED = 6;
-	public static readonly DOC_UNDOCUMENTED = 7;
-	public static readonly LBRACE = 8;
-	public static readonly RBRACE = 9;
-	public static readonly LPAREN = 10;
-	public static readonly RPAREN = 11;
-	public static readonly COMMA = 12;
-	public static readonly DOT = 13;
-	public static readonly COLON = 14;
-	public static readonly SEMICOLON = 15;
-	public static readonly LANGLE = 16;
-	public static readonly RANGLE = 17;
-	public static readonly CPP = 18;
-	public static readonly JAVA = 19;
-	public static readonly KMP = 20;
-	public static readonly OBJC = 21;
-	public static readonly SWIFT = 22;
-	public static readonly DART = 23;
-	public static readonly PROTOCONV = 24;
-	public static readonly TYPE_PREFIX = 25;
-	public static readonly IMPORT = 26;
-	public static readonly CONST = 27;
-	public static readonly OPTIONAL = 28;
-	public static readonly BG_THREAD = 29;
-	public static readonly ANY_THREAD = 30;
-	public static readonly BASED_ON = 31;
-	public static readonly SERIALIZABLE = 32;
-	public static readonly ENUM = 33;
-	public static readonly BITFIELD = 34;
-	public static readonly VARIANT = 35;
-	public static readonly STRUCT = 36;
-	public static readonly LITE = 37;
-	public static readonly OPTIONS = 38;
-	public static readonly ABSTRACT = 39;
-	public static readonly INTERFACE = 40;
-	public static readonly VIRTUAL = 41;
-	public static readonly VIEW_DELEGATE = 42;
-	public static readonly WEAK_REF = 43;
-	public static readonly SHARED_REF = 44;
-	public static readonly GEN = 45;
-	public static readonly READONLY = 46;
-	public static readonly NATIVE = 47;
-	public static readonly STATIC = 48;
-	public static readonly LISTENER = 49;
-	public static readonly LAMBDA = 50;
-	public static readonly STRONG_REF = 51;
-	public static readonly PLATFORM = 52;
-	public static readonly ASSIGN = 53;
-	public static readonly LSHIFT = 54;
-	public static readonly BINOR = 55;
-	public static readonly INT_LITERAL = 56;
-	public static readonly FLOAT_LITERAL = 57;
-	public static readonly DOUBLE_LITERAL = 58;
-	public static readonly STR_LITERAL = 59;
-	public static readonly BOOL_LITERAL = 60;
-	public static readonly NEWLINE = 61;
-	public static readonly SPACE = 62;
-	public static readonly IDENTIFIER = 63;
-	public static readonly SINGLE_COMMERCIAL = 64;
-	public static readonly SINGLE_INTERNAL = 65;
-	public static readonly SINGLE_DEPRECATED = 66;
-	public static readonly SIGNLE_UNDOCUMENTED = 67;
-	public static readonly MULTI_END_COMMENT = 68;
+	public static readonly COMMERCIAL_TAG = 4;
+	public static readonly INTERNAL_TAG = 5;
+	public static readonly DEPRECATED_TAG = 6;
+	public static readonly UNDOCUMENTED_TAG = 7;
+	public static readonly LINK_TAG_BEGIN = 8;
+	public static readonly LINK_TAG_END = 9;
+	public static readonly PARAM_TAG = 10;
+	public static readonly RETURN_TAG = 11;
+	public static readonly LBRACE = 12;
+	public static readonly RBRACE = 13;
+	public static readonly LPAREN = 14;
+	public static readonly RPAREN = 15;
+	public static readonly COMMA = 16;
+	public static readonly DOT = 17;
+	public static readonly COLON = 18;
+	public static readonly SEMICOLON = 19;
+	public static readonly LANGLE = 20;
+	public static readonly RANGLE = 21;
+	public static readonly NUM = 22;
+	public static readonly CPP = 23;
+	public static readonly JAVA = 24;
+	public static readonly KMP = 25;
+	public static readonly OBJC = 26;
+	public static readonly SWIFT = 27;
+	public static readonly DART = 28;
+	public static readonly PROTOCONV = 29;
+	public static readonly TYPE_PREFIX = 30;
+	public static readonly IMPORT = 31;
+	public static readonly CONST = 32;
+	public static readonly OPTIONAL = 33;
+	public static readonly BG_THREAD = 34;
+	public static readonly ANY_THREAD = 35;
+	public static readonly BASED_ON = 36;
+	public static readonly SERIALIZABLE = 37;
+	public static readonly ENUM = 38;
+	public static readonly BITFIELD = 39;
+	public static readonly VARIANT = 40;
+	public static readonly STRUCT = 41;
+	public static readonly LITE = 42;
+	public static readonly OPTIONS = 43;
+	public static readonly ABSTRACT = 44;
+	public static readonly INTERFACE = 45;
+	public static readonly VIRTUAL = 46;
+	public static readonly VIEW_DELEGATE = 47;
+	public static readonly WEAK_REF = 48;
+	public static readonly SHARED_REF = 49;
+	public static readonly GEN = 50;
+	public static readonly READONLY = 51;
+	public static readonly NATIVE = 52;
+	public static readonly STATIC = 53;
+	public static readonly LISTENER = 54;
+	public static readonly LAMBDA = 55;
+	public static readonly STRONG_REF = 56;
+	public static readonly PLATFORM = 57;
+	public static readonly ASSIGN = 58;
+	public static readonly LSHIFT = 59;
+	public static readonly BINOR = 60;
+	public static readonly INT_LITERAL = 61;
+	public static readonly FLOAT_LITERAL = 62;
+	public static readonly DOUBLE_LITERAL = 63;
+	public static readonly STR_LITERAL = 64;
+	public static readonly BOOL_LITERAL = 65;
+	public static readonly NEWLINE = 66;
+	public static readonly SPACE = 67;
+	public static readonly IDENTIFIER = 68;
+	public static readonly LINK_SPACE = 69;
+	public static readonly SINGLE_COMMERCIAL = 70;
+	public static readonly SINGLE_INTERNAL = 71;
+	public static readonly SINGLE_DEPRECATED = 72;
+	public static readonly SINGLE_UNDOCUMENTED = 73;
+	public static readonly SINGLE_RETURN = 74;
+	public static readonly MULTI_END_COMMENT = 75;
 	public static readonly EOF = Token.EOF;
 	public static readonly RULE_programm = 0;
 	public static readonly RULE_topDecl = 1;
 	public static readonly RULE_importExpr = 2;
 	public static readonly RULE_typePrefix = 3;
 	public static readonly RULE_documentation = 4;
-	public static readonly RULE_documentationTag = 5;
-	public static readonly RULE_interfaceDecl = 6;
-	public static readonly RULE_interfaceOwnership = 7;
-	public static readonly RULE_enumDecl = 8;
-	public static readonly RULE_enumFieldsDecl = 9;
-	public static readonly RULE_enumField = 10;
-	public static readonly RULE_variantDecl = 11;
-	public static readonly RULE_structDecl = 12;
-	public static readonly RULE_structKind = 13;
-	public static readonly RULE_listenerDecl = 14;
-	public static readonly RULE_functionDecl = 15;
-	public static readonly RULE_parametersDecl = 16;
-	public static readonly RULE_parameter = 17;
-	public static readonly RULE_propertyDecl = 18;
-	public static readonly RULE_structFieldDecl = 19;
-	public static readonly RULE_typeRef = 20;
-	public static readonly RULE_customizableNameDecl = 21;
-	public static readonly RULE_basedProtoTop = 22;
-	public static readonly RULE_basedProtoInternal = 23;
-	public static readonly RULE_sourceDecl = 24;
-	public static readonly RULE_expr = 25;
+	public static readonly RULE_documentationBlock = 5;
+	public static readonly RULE_documentationTag = 6;
+	public static readonly RULE_documentationLink = 7;
+	public static readonly RULE_documentationParam = 8;
+	public static readonly RULE_documentationReturn = 9;
+	public static readonly RULE_parametersRef = 10;
+	public static readonly RULE_interfaceDecl = 11;
+	public static readonly RULE_interfaceOwnership = 12;
+	public static readonly RULE_enumDecl = 13;
+	public static readonly RULE_enumFieldsDecl = 14;
+	public static readonly RULE_enumField = 15;
+	public static readonly RULE_variantDecl = 16;
+	public static readonly RULE_structDecl = 17;
+	public static readonly RULE_structKind = 18;
+	public static readonly RULE_listenerDecl = 19;
+	public static readonly RULE_functionDecl = 20;
+	public static readonly RULE_parametersDecl = 21;
+	public static readonly RULE_parameter = 22;
+	public static readonly RULE_propertyDecl = 23;
+	public static readonly RULE_structFieldDecl = 24;
+	public static readonly RULE_typeRef = 25;
+	public static readonly RULE_customizableNameDecl = 26;
+	public static readonly RULE_basedProtoTop = 27;
+	public static readonly RULE_basedProtoInternal = 28;
+	public static readonly RULE_sourceDecl = 29;
+	public static readonly RULE_expr = 30;
 	public static readonly literalNames: (string | null)[] = [ null, null, 
                                                             null, null, 
                                                             null, null, 
                                                             null, null, 
-                                                            "'{'", "'}'", 
-                                                            "'('", "')'", 
-                                                            "','", "'.'", 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
+                                                            null, null, 
                                                             "':'", "';'", 
                                                             "'<'", "'>'", 
-                                                            "'cpp'", "'java'", 
-                                                            "'kmp'", "'objc'", 
-                                                            "'swift'", "'dart'", 
-                                                            "'protoconv'", 
+                                                            null, "'cpp'", 
+                                                            "'java'", "'kmp'", 
+                                                            "'objc'", "'swift'", 
+                                                            "'dart'", "'protoconv'", 
                                                             "'type_prefix'", 
                                                             "'import'", 
                                                             "'const'", "'optional'", 
@@ -155,26 +169,31 @@ export default class IdlParser extends Parser {
                                                             "'|'", null, 
                                                             null, null, 
                                                             null, null, 
-                                                            null, "' '", 
+                                                            null, null, 
+                                                            null, null, 
                                                             null, null, 
                                                             null, null, 
                                                             null, "'*/'" ];
 	public static readonly symbolicNames: (string | null)[] = [ null, "DOC_BEGIN", 
                                                              "DOC_END", 
                                                              "DOC_TEXT", 
-                                                             "DOC_INTERNAL", 
-                                                             "DOC_COMMERCIAL", 
-                                                             "DOC_DEPRECATED", 
-                                                             "DOC_UNDOCUMENTED", 
+                                                             "COMMERCIAL_TAG", 
+                                                             "INTERNAL_TAG", 
+                                                             "DEPRECATED_TAG", 
+                                                             "UNDOCUMENTED_TAG", 
+                                                             "LINK_TAG_BEGIN", 
+                                                             "LINK_TAG_END", 
+                                                             "PARAM_TAG", 
+                                                             "RETURN_TAG", 
                                                              "LBRACE", "RBRACE", 
                                                              "LPAREN", "RPAREN", 
                                                              "COMMA", "DOT", 
                                                              "COLON", "SEMICOLON", 
                                                              "LANGLE", "RANGLE", 
-                                                             "CPP", "JAVA", 
-                                                             "KMP", "OBJC", 
-                                                             "SWIFT", "DART", 
-                                                             "PROTOCONV", 
+                                                             "NUM", "CPP", 
+                                                             "JAVA", "KMP", 
+                                                             "OBJC", "SWIFT", 
+                                                             "DART", "PROTOCONV", 
                                                              "TYPE_PREFIX", 
                                                              "IMPORT", "CONST", 
                                                              "OPTIONAL", 
@@ -205,19 +224,22 @@ export default class IdlParser extends Parser {
                                                              "BOOL_LITERAL", 
                                                              "NEWLINE", 
                                                              "SPACE", "IDENTIFIER", 
+                                                             "LINK_SPACE", 
                                                              "SINGLE_COMMERCIAL", 
                                                              "SINGLE_INTERNAL", 
                                                              "SINGLE_DEPRECATED", 
-                                                             "SIGNLE_UNDOCUMENTED", 
+                                                             "SINGLE_UNDOCUMENTED", 
+                                                             "SINGLE_RETURN", 
                                                              "MULTI_END_COMMENT" ];
 	// tslint:disable:no-trailing-whitespace
 	public static readonly ruleNames: string[] = [
-		"programm", "topDecl", "importExpr", "typePrefix", "documentation", "documentationTag", 
-		"interfaceDecl", "interfaceOwnership", "enumDecl", "enumFieldsDecl", "enumField", 
-		"variantDecl", "structDecl", "structKind", "listenerDecl", "functionDecl", 
-		"parametersDecl", "parameter", "propertyDecl", "structFieldDecl", "typeRef", 
-		"customizableNameDecl", "basedProtoTop", "basedProtoInternal", "sourceDecl", 
-		"expr",
+		"programm", "topDecl", "importExpr", "typePrefix", "documentation", "documentationBlock", 
+		"documentationTag", "documentationLink", "documentationParam", "documentationReturn", 
+		"parametersRef", "interfaceDecl", "interfaceOwnership", "enumDecl", "enumFieldsDecl", 
+		"enumField", "variantDecl", "structDecl", "structKind", "listenerDecl", 
+		"functionDecl", "parametersDecl", "parameter", "propertyDecl", "structFieldDecl", 
+		"typeRef", "customizableNameDecl", "basedProtoTop", "basedProtoInternal", 
+		"sourceDecl", "expr",
 	];
 	public get grammarFileName(): string { return "IdlParser.g4"; }
 	public get literalNames(): (string | null)[] { return IdlParser.literalNames; }
@@ -241,41 +263,41 @@ export default class IdlParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 53;
+			this.state = 63;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===25) {
+			if (_la===30) {
 				{
-				this.state = 52;
+				this.state = 62;
 				this.typePrefix();
 				}
 			}
 
-			this.state = 58;
+			this.state = 68;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===26) {
+			while (_la===31) {
 				{
 				{
-				this.state = 55;
+				this.state = 65;
 				this.importExpr();
 				}
 				}
-				this.state = 60;
+				this.state = 70;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 64;
+			this.state = 74;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===1 || _la===18 || ((((_la - 32)) & ~0x1F) === 0 && ((1 << (_la - 32)) & 2072575) !== 0)) {
+			while (_la===1 || _la===23 || ((((_la - 37)) & ~0x1F) === 0 && ((1 << (_la - 37)) & 2072575) !== 0)) {
 				{
 				{
-				this.state = 61;
+				this.state = 71;
 				this.topDecl();
 				}
 				}
-				this.state = 66;
+				this.state = 76;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
@@ -302,36 +324,36 @@ export default class IdlParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 72;
+			this.state = 82;
 			this._errHandler.sync(this);
 			switch ( this._interp.adaptivePredict(this._input, 3, this._ctx) ) {
 			case 1:
 				{
-				this.state = 67;
+				this.state = 77;
 				this.interfaceDecl();
 				}
 				break;
 			case 2:
 				{
-				this.state = 68;
+				this.state = 78;
 				this.enumDecl();
 				}
 				break;
 			case 3:
 				{
-				this.state = 69;
+				this.state = 79;
 				this.variantDecl();
 				}
 				break;
 			case 4:
 				{
-				this.state = 70;
+				this.state = 80;
 				this.structDecl();
 				}
 				break;
 			case 5:
 				{
-				this.state = 71;
+				this.state = 81;
 				this.listenerDecl();
 				}
 				break;
@@ -359,11 +381,11 @@ export default class IdlParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 74;
+			this.state = 84;
 			this.match(IdlParser.IMPORT);
-			this.state = 75;
+			this.state = 85;
 			this.match(IdlParser.STR_LITERAL);
-			this.state = 76;
+			this.state = 86;
 			this.match(IdlParser.SEMICOLON);
 			}
 		}
@@ -388,11 +410,11 @@ export default class IdlParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 78;
+			this.state = 88;
 			this.match(IdlParser.TYPE_PREFIX);
-			this.state = 79;
+			this.state = 89;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 80;
+			this.state = 90;
 			this.match(IdlParser.SEMICOLON);
 			}
 		}
@@ -418,26 +440,27 @@ export default class IdlParser extends Parser {
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 91;
+			this.state = 103;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			do {
 				{
 				{
-				this.state = 82;
+				this.state = 92;
 				this.match(IdlParser.DOC_BEGIN);
-				this.state = 87;
+				this.state = 99;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 248) !== 0)) {
+				while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 3576) !== 0)) {
 					{
-					this.state = 85;
+					this.state = 97;
 					this._errHandler.sync(this);
 					switch (this._input.LA(1)) {
 					case 3:
+					case 8:
 						{
-						this.state = 83;
-						this.match(IdlParser.DOC_TEXT);
+						this.state = 93;
+						this.documentationBlock();
 						}
 						break;
 					case 4:
@@ -445,23 +468,35 @@ export default class IdlParser extends Parser {
 					case 6:
 					case 7:
 						{
-						this.state = 84;
+						this.state = 94;
 						this.documentationTag();
+						}
+						break;
+					case 10:
+						{
+						this.state = 95;
+						this.documentationParam();
+						}
+						break;
+					case 11:
+						{
+						this.state = 96;
+						this.documentationReturn();
 						}
 						break;
 					default:
 						throw new NoViableAltException(this);
 					}
 					}
-					this.state = 89;
+					this.state = 101;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
-				this.state = 90;
+				this.state = 102;
 				this.match(IdlParser.DOC_END);
 				}
 				}
-				this.state = 93;
+				this.state = 105;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			} while (_la===1);
@@ -482,14 +517,72 @@ export default class IdlParser extends Parser {
 		return localctx;
 	}
 	// @RuleVersion(0)
+	public documentationBlock(): DocumentationBlockContext {
+		let localctx: DocumentationBlockContext = new DocumentationBlockContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 10, IdlParser.RULE_documentationBlock);
+		try {
+			let _alt: number;
+			this.enterOuterAlt(localctx, 1);
+			{
+			this.state = 109;
+			this._errHandler.sync(this);
+			_alt = 1;
+			do {
+				switch (_alt) {
+				case 1:
+					{
+					this.state = 109;
+					this._errHandler.sync(this);
+					switch (this._input.LA(1)) {
+					case 3:
+						{
+						this.state = 107;
+						this.match(IdlParser.DOC_TEXT);
+						}
+						break;
+					case 8:
+						{
+						this.state = 108;
+						this.documentationLink();
+						}
+						break;
+					default:
+						throw new NoViableAltException(this);
+					}
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				this.state = 111;
+				this._errHandler.sync(this);
+				_alt = this._interp.adaptivePredict(this._input, 8, this._ctx);
+			} while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return localctx;
+	}
+	// @RuleVersion(0)
 	public documentationTag(): DocumentationTagContext {
 		let localctx: DocumentationTagContext = new DocumentationTagContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 10, IdlParser.RULE_documentationTag);
+		this.enterRule(localctx, 12, IdlParser.RULE_documentationTag);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 95;
+			this.state = 113;
 			_la = this._input.LA(1);
 			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 240) !== 0))) {
 			this._errHandler.recoverInline(this);
@@ -515,151 +608,351 @@ export default class IdlParser extends Parser {
 		return localctx;
 	}
 	// @RuleVersion(0)
-	public interfaceDecl(): InterfaceDeclContext {
-		let localctx: InterfaceDeclContext = new InterfaceDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 12, IdlParser.RULE_interfaceDecl);
+	public documentationLink(): DocumentationLinkContext {
+		let localctx: DocumentationLinkContext = new DocumentationLinkContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 14, IdlParser.RULE_documentationLink);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 98;
+			this.state = 115;
+			this.match(IdlParser.LINK_TAG_BEGIN);
+			this.state = 132;
+			this._errHandler.sync(this);
+			switch ( this._interp.adaptivePredict(this._input, 12, this._ctx) ) {
+			case 1:
+				{
+				this.state = 116;
+				localctx._Type = this.typeRef();
+				}
+				break;
+			case 2:
+				{
+				this.state = 118;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+				if (_la===17 || _la===33 || _la===68) {
+					{
+					this.state = 117;
+					localctx._Type = this.typeRef();
+					}
+				}
+
+				this.state = 120;
+				this.match(IdlParser.NUM);
+				this.state = 121;
+				localctx._Member = this.match(IdlParser.IDENTIFIER);
+				this.state = 130;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+				if (_la===14) {
+					{
+					this.state = 122;
+					this.match(IdlParser.LPAREN);
+					this.state = 126;
+					this._errHandler.sync(this);
+					_la = this._input.LA(1);
+					while (_la===17 || _la===33 || _la===68) {
+						{
+						{
+						this.state = 123;
+						this.parametersRef();
+						}
+						}
+						this.state = 128;
+						this._errHandler.sync(this);
+						_la = this._input.LA(1);
+					}
+					this.state = 129;
+					this.match(IdlParser.RPAREN);
+					}
+				}
+
+				}
+				break;
+			}
+			this.state = 134;
+			this.match(IdlParser.LINK_TAG_END);
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return localctx;
+	}
+	// @RuleVersion(0)
+	public documentationParam(): DocumentationParamContext {
+		let localctx: DocumentationParamContext = new DocumentationParamContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 16, IdlParser.RULE_documentationParam);
+		try {
+			this.enterOuterAlt(localctx, 1);
+			{
+			this.state = 136;
+			this.match(IdlParser.PARAM_TAG);
+			this.state = 137;
+			localctx._Member = this.match(IdlParser.IDENTIFIER);
+			this.state = 138;
+			localctx._Desc = this.documentationBlock();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return localctx;
+	}
+	// @RuleVersion(0)
+	public documentationReturn(): DocumentationReturnContext {
+		let localctx: DocumentationReturnContext = new DocumentationReturnContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 18, IdlParser.RULE_documentationReturn);
+		try {
+			this.enterOuterAlt(localctx, 1);
+			{
+			this.state = 140;
+			this.match(IdlParser.RETURN_TAG);
+			this.state = 141;
+			localctx._Desc = this.documentationBlock();
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return localctx;
+	}
+	// @RuleVersion(0)
+	public parametersRef(): ParametersRefContext {
+		let localctx: ParametersRefContext = new ParametersRefContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 20, IdlParser.RULE_parametersRef);
+		let _la: number;
+		try {
+			this.enterOuterAlt(localctx, 1);
+			{
+			this.state = 143;
+			this.typeRef();
+			this.state = 145;
+			this._errHandler.sync(this);
+			switch ( this._interp.adaptivePredict(this._input, 13, this._ctx) ) {
+			case 1:
+				{
+				this.state = 144;
+				this.match(IdlParser.IDENTIFIER);
+				}
+				break;
+			}
+			this.state = 154;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			while (_la===16) {
+				{
+				{
+				this.state = 147;
+				this.match(IdlParser.COMMA);
+				this.state = 148;
+				this.typeRef();
+				this.state = 150;
+				this._errHandler.sync(this);
+				switch ( this._interp.adaptivePredict(this._input, 14, this._ctx) ) {
+				case 1:
+					{
+					this.state = 149;
+					this.match(IdlParser.IDENTIFIER);
+					}
+					break;
+				}
+				}
+				}
+				this.state = 156;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+			}
+			}
+		}
+		catch (re) {
+			if (re instanceof RecognitionException) {
+				localctx.exception = re;
+				this._errHandler.reportError(this, re);
+				this._errHandler.recover(this, re);
+			} else {
+				throw re;
+			}
+		}
+		finally {
+			this.exitRule();
+		}
+		return localctx;
+	}
+	// @RuleVersion(0)
+	public interfaceDecl(): InterfaceDeclContext {
+		let localctx: InterfaceDeclContext = new InterfaceDeclContext(this, this._ctx, this.state);
+		this.enterRule(localctx, 22, IdlParser.RULE_interfaceDecl);
+		let _la: number;
+		try {
+			this.enterOuterAlt(localctx, 1);
+			{
+			this.state = 158;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===1) {
 				{
-				this.state = 97;
+				this.state = 157;
 				this.documentation();
 				}
 			}
 
-			this.state = 115;
+			this.state = 175;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 40:
-			case 41:
-			case 42:
-			case 43:
-			case 44:
+			case 45:
+			case 46:
+			case 47:
 			case 48:
+			case 49:
+			case 53:
 				{
-				this.state = 101;
+				this.state = 161;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (_la===48) {
+				if (_la===53) {
 					{
-					this.state = 100;
+					this.state = 160;
 					this.match(IdlParser.STATIC);
 					}
 				}
 
-				this.state = 104;
+				this.state = 164;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (_la===41) {
+				if (_la===46) {
 					{
-					this.state = 103;
+					this.state = 163;
 					this.match(IdlParser.VIRTUAL);
 					}
 				}
 
-				this.state = 107;
+				this.state = 167;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (_la===42) {
+				if (_la===47) {
 					{
-					this.state = 106;
+					this.state = 166;
 					this.match(IdlParser.VIEW_DELEGATE);
 					}
 				}
 
-				this.state = 110;
+				this.state = 170;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (_la===43 || _la===44) {
+				if (_la===48 || _la===49) {
 					{
-					this.state = 109;
+					this.state = 169;
 					this.interfaceOwnership();
 					}
 				}
 
-				this.state = 112;
+				this.state = 172;
 				this.match(IdlParser.INTERFACE);
 				}
 				break;
-			case 47:
+			case 52:
 				{
-				this.state = 113;
+				this.state = 173;
 				this.match(IdlParser.NATIVE);
-				this.state = 114;
+				this.state = 174;
 				this.match(IdlParser.LISTENER);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			this.state = 117;
+			this.state = 177;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 122;
-			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			if (_la===10) {
-				{
-				this.state = 118;
-				this.match(IdlParser.LPAREN);
-				this.state = 119;
-				this.customizableNameDecl();
-				this.state = 120;
-				this.match(IdlParser.RPAREN);
-				}
-			}
-
-			this.state = 126;
+			this.state = 182;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===14) {
 				{
-				this.state = 124;
+				this.state = 178;
+				this.match(IdlParser.LPAREN);
+				this.state = 179;
+				this.customizableNameDecl();
+				this.state = 180;
+				this.match(IdlParser.RPAREN);
+				}
+			}
+
+			this.state = 186;
+			this._errHandler.sync(this);
+			_la = this._input.LA(1);
+			if (_la===18) {
+				{
+				this.state = 184;
 				this.match(IdlParser.COLON);
-				this.state = 125;
+				this.state = 185;
 				localctx._Parent = this.typeRef();
 				}
 			}
 
-			this.state = 128;
+			this.state = 188;
 			this.match(IdlParser.LBRACE);
-			this.state = 134;
+			this.state = 194;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 268705794) !== 0) || ((((_la - 32)) & ~0x1F) === 0 && ((1 << (_la - 32)) & 2149564415) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 8519682) !== 0) || ((((_la - 33)) & ~0x1F) === 0 && ((1 << (_la - 33)) & 33292273) !== 0) || _la===68) {
 				{
-				this.state = 132;
+				this.state = 192;
 				this._errHandler.sync(this);
-				switch ( this._interp.adaptivePredict(this._input, 15, this._ctx) ) {
+				switch ( this._interp.adaptivePredict(this._input, 24, this._ctx) ) {
 				case 1:
 					{
-					this.state = 129;
+					this.state = 189;
 					this.functionDecl();
 					}
 					break;
 				case 2:
 					{
-					this.state = 130;
+					this.state = 190;
 					this.propertyDecl();
 					}
 					break;
 				case 3:
 					{
-					this.state = 131;
+					this.state = 191;
 					this.topDecl();
 					}
 					break;
 				}
 				}
-				this.state = 136;
+				this.state = 196;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 137;
+			this.state = 197;
 			this.match(IdlParser.RBRACE);
 			}
 		}
@@ -680,14 +973,14 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public interfaceOwnership(): InterfaceOwnershipContext {
 		let localctx: InterfaceOwnershipContext = new InterfaceOwnershipContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 14, IdlParser.RULE_interfaceOwnership);
+		this.enterRule(localctx, 24, IdlParser.RULE_interfaceOwnership);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 139;
+			this.state = 199;
 			_la = this._input.LA(1);
-			if(!(_la===43 || _la===44)) {
+			if(!(_la===48 || _la===49)) {
 			this._errHandler.recoverInline(this);
 			}
 			else {
@@ -713,74 +1006,74 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public enumDecl(): EnumDeclContext {
 		let localctx: EnumDeclContext = new EnumDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 16, IdlParser.RULE_enumDecl);
+		this.enterRule(localctx, 26, IdlParser.RULE_enumDecl);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 142;
+			this.state = 202;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===1) {
 				{
-				this.state = 141;
+				this.state = 201;
 				this.documentation();
 				}
 			}
 
-			this.state = 145;
+			this.state = 205;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===18) {
+			if (_la===23) {
 				{
-				this.state = 144;
+				this.state = 204;
 				this.sourceDecl();
 				}
 			}
 
-			this.state = 148;
+			this.state = 208;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===34) {
+			if (_la===39) {
 				{
-				this.state = 147;
+				this.state = 207;
 				this.match(IdlParser.BITFIELD);
 				}
 			}
 
-			this.state = 150;
+			this.state = 210;
 			this.match(IdlParser.ENUM);
-			this.state = 151;
+			this.state = 211;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 156;
+			this.state = 216;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===10) {
+			if (_la===14) {
 				{
-				this.state = 152;
+				this.state = 212;
 				this.match(IdlParser.LPAREN);
-				this.state = 153;
+				this.state = 213;
 				this.customizableNameDecl();
-				this.state = 154;
+				this.state = 214;
 				this.match(IdlParser.RPAREN);
 				}
 			}
 
-			this.state = 159;
+			this.state = 219;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===31) {
+			if (_la===36) {
 				{
-				this.state = 158;
+				this.state = 218;
 				this.basedProtoTop();
 				}
 			}
 
-			this.state = 161;
+			this.state = 221;
 			this.match(IdlParser.LBRACE);
-			this.state = 162;
+			this.state = 222;
 			this.enumFieldsDecl();
-			this.state = 163;
+			this.state = 223;
 			this.match(IdlParser.RBRACE);
 			}
 		}
@@ -801,38 +1094,38 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public enumFieldsDecl(): EnumFieldsDeclContext {
 		let localctx: EnumFieldsDeclContext = new EnumFieldsDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 18, IdlParser.RULE_enumFieldsDecl);
+		this.enterRule(localctx, 28, IdlParser.RULE_enumFieldsDecl);
 		let _la: number;
 		try {
 			let _alt: number;
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 165;
+			this.state = 225;
 			this.enumField();
-			this.state = 170;
+			this.state = 230;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 22, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 31, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					{
 					{
-					this.state = 166;
+					this.state = 226;
 					this.match(IdlParser.COMMA);
-					this.state = 167;
+					this.state = 227;
 					this.enumField();
 					}
 					}
 				}
-				this.state = 172;
+				this.state = 232;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 22, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 31, this._ctx);
 			}
-			this.state = 174;
+			this.state = 234;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===12) {
+			if (_la===16) {
 				{
-				this.state = 173;
+				this.state = 233;
 				this.match(IdlParser.COMMA);
 				}
 			}
@@ -856,31 +1149,31 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public enumField(): EnumFieldContext {
 		let localctx: EnumFieldContext = new EnumFieldContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 20, IdlParser.RULE_enumField);
+		this.enterRule(localctx, 30, IdlParser.RULE_enumField);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 177;
+			this.state = 237;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===1) {
 				{
-				this.state = 176;
+				this.state = 236;
 				this.documentation();
 				}
 			}
 
-			this.state = 179;
+			this.state = 239;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 182;
+			this.state = 242;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===53) {
+			if (_la===58) {
 				{
-				this.state = 180;
+				this.state = 240;
 				this.match(IdlParser.ASSIGN);
-				this.state = 181;
+				this.state = 241;
 				this.expr(0);
 				}
 			}
@@ -904,66 +1197,66 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public variantDecl(): VariantDeclContext {
 		let localctx: VariantDeclContext = new VariantDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 22, IdlParser.RULE_variantDecl);
+		this.enterRule(localctx, 32, IdlParser.RULE_variantDecl);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 185;
+			this.state = 245;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===1) {
 				{
-				this.state = 184;
+				this.state = 244;
 				this.documentation();
 				}
 			}
 
-			this.state = 188;
+			this.state = 248;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===18) {
+			if (_la===23) {
 				{
-				this.state = 187;
+				this.state = 247;
 				this.sourceDecl();
 				}
 			}
 
-			this.state = 190;
+			this.state = 250;
 			this.match(IdlParser.VARIANT);
-			this.state = 191;
+			this.state = 251;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 196;
+			this.state = 256;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===10) {
+			if (_la===14) {
 				{
-				this.state = 192;
+				this.state = 252;
 				this.match(IdlParser.LPAREN);
-				this.state = 193;
+				this.state = 253;
 				this.customizableNameDecl();
-				this.state = 194;
+				this.state = 254;
 				this.match(IdlParser.RPAREN);
 				}
 			}
 
-			this.state = 198;
+			this.state = 258;
 			this.match(IdlParser.LBRACE);
-			this.state = 202;
+			this.state = 262;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 268443650) !== 0) || _la===63) {
+			while (_la===1 || _la===17 || _la===33 || _la===68) {
 				{
 				{
-				this.state = 199;
+				this.state = 259;
 				this.structFieldDecl();
 				}
 				}
-				this.state = 204;
+				this.state = 264;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 205;
+			this.state = 265;
 			this.match(IdlParser.RBRACE);
 			}
 		}
@@ -984,130 +1277,130 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public structDecl(): StructDeclContext {
 		let localctx: StructDeclContext = new StructDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 24, IdlParser.RULE_structDecl);
+		this.enterRule(localctx, 34, IdlParser.RULE_structDecl);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 208;
+			this.state = 268;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===1) {
 				{
-				this.state = 207;
+				this.state = 267;
 				this.documentation();
 				}
 			}
 
-			this.state = 211;
+			this.state = 271;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===18) {
+			if (_la===23) {
 				{
-				this.state = 210;
+				this.state = 270;
 				this.sourceDecl();
 				}
 			}
 
-			this.state = 214;
+			this.state = 274;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===39) {
+			if (_la===44) {
 				{
-				this.state = 213;
+				this.state = 273;
 				this.match(IdlParser.ABSTRACT);
 				}
 			}
 
-			this.state = 217;
+			this.state = 277;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===32) {
+			if (_la===37) {
 				{
-				this.state = 216;
+				this.state = 276;
 				this.match(IdlParser.SERIALIZABLE);
 				}
 			}
 
-			this.state = 220;
+			this.state = 280;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===37 || _la===38) {
+			if (_la===42 || _la===43) {
 				{
-				this.state = 219;
+				this.state = 279;
 				this.structKind();
 				}
 			}
 
-			this.state = 222;
+			this.state = 282;
 			this.match(IdlParser.STRUCT);
-			this.state = 223;
+			this.state = 283;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 226;
+			this.state = 286;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===14) {
+			if (_la===18) {
 				{
-				this.state = 224;
+				this.state = 284;
 				this.match(IdlParser.COLON);
-				this.state = 225;
+				this.state = 285;
 				localctx._Parent = this.typeRef();
 				}
 			}
 
-			this.state = 232;
+			this.state = 292;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===10) {
+			if (_la===14) {
 				{
-				this.state = 228;
+				this.state = 288;
 				this.match(IdlParser.LPAREN);
-				this.state = 229;
+				this.state = 289;
 				this.customizableNameDecl();
-				this.state = 230;
+				this.state = 290;
 				this.match(IdlParser.RPAREN);
 				}
 			}
 
-			this.state = 235;
+			this.state = 295;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===31) {
+			if (_la===36) {
 				{
-				this.state = 234;
+				this.state = 294;
 				this.basedProtoTop();
 				}
 			}
 
-			this.state = 237;
+			this.state = 297;
 			this.match(IdlParser.LBRACE);
-			this.state = 242;
+			this.state = 302;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 268705794) !== 0) || ((((_la - 32)) & ~0x1F) === 0 && ((1 << (_la - 32)) & 2149556223) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 8519682) !== 0) || ((((_la - 33)) & ~0x1F) === 0 && ((1 << (_la - 33)) & 33161201) !== 0) || _la===68) {
 				{
-				this.state = 240;
+				this.state = 300;
 				this._errHandler.sync(this);
-				switch ( this._interp.adaptivePredict(this._input, 38, this._ctx) ) {
+				switch ( this._interp.adaptivePredict(this._input, 47, this._ctx) ) {
 				case 1:
 					{
-					this.state = 238;
+					this.state = 298;
 					this.topDecl();
 					}
 					break;
 				case 2:
 					{
-					this.state = 239;
+					this.state = 299;
 					this.structFieldDecl();
 					}
 					break;
 				}
 				}
-				this.state = 244;
+				this.state = 304;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 245;
+			this.state = 305;
 			this.match(IdlParser.RBRACE);
 			}
 		}
@@ -1128,14 +1421,14 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public structKind(): StructKindContext {
 		let localctx: StructKindContext = new StructKindContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 26, IdlParser.RULE_structKind);
+		this.enterRule(localctx, 36, IdlParser.RULE_structKind);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 247;
+			this.state = 307;
 			_la = this._input.LA(1);
-			if(!(_la===37 || _la===38)) {
+			if(!(_la===42 || _la===43)) {
 			this._errHandler.recoverInline(this);
 			}
 			else {
@@ -1161,108 +1454,108 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public listenerDecl(): ListenerDeclContext {
 		let localctx: ListenerDeclContext = new ListenerDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 28, IdlParser.RULE_listenerDecl);
+		this.enterRule(localctx, 38, IdlParser.RULE_listenerDecl);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 250;
+			this.state = 310;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===1) {
 				{
-				this.state = 249;
+				this.state = 309;
 				this.documentation();
 				}
 			}
 
-			this.state = 261;
+			this.state = 321;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 51:
-			case 52:
+			case 56:
+			case 57:
 				{
-				this.state = 253;
+				this.state = 313;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (_la===51) {
+				if (_la===56) {
 					{
-					this.state = 252;
+					this.state = 312;
 					this.match(IdlParser.STRONG_REF);
 					}
 				}
 
-				this.state = 255;
+				this.state = 315;
 				this.match(IdlParser.PLATFORM);
-				this.state = 256;
+				this.state = 316;
 				this.match(IdlParser.INTERFACE);
 				}
 				break;
-			case 49:
-			case 50:
+			case 54:
+			case 55:
 				{
-				this.state = 258;
+				this.state = 318;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				if (_la===50) {
+				if (_la===55) {
 					{
-					this.state = 257;
+					this.state = 317;
 					this.match(IdlParser.LAMBDA);
 					}
 				}
 
-				this.state = 260;
+				this.state = 320;
 				this.match(IdlParser.LISTENER);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			this.state = 263;
+			this.state = 323;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 268;
+			this.state = 328;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===10) {
+			if (_la===14) {
 				{
-				this.state = 264;
+				this.state = 324;
 				this.match(IdlParser.LPAREN);
-				this.state = 265;
+				this.state = 325;
 				this.customizableNameDecl();
-				this.state = 266;
+				this.state = 326;
 				this.match(IdlParser.RPAREN);
 				}
 			}
 
-			this.state = 270;
+			this.state = 330;
 			this.match(IdlParser.LBRACE);
-			this.state = 275;
+			this.state = 335;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 268705794) !== 0) || ((((_la - 32)) & ~0x1F) === 0 && ((1 << (_la - 32)) & 2149556223) !== 0)) {
+			while ((((_la) & ~0x1F) === 0 && ((1 << _la) & 8519682) !== 0) || ((((_la - 33)) & ~0x1F) === 0 && ((1 << (_la - 33)) & 33161201) !== 0) || _la===68) {
 				{
-				this.state = 273;
+				this.state = 333;
 				this._errHandler.sync(this);
-				switch ( this._interp.adaptivePredict(this._input, 45, this._ctx) ) {
+				switch ( this._interp.adaptivePredict(this._input, 54, this._ctx) ) {
 				case 1:
 					{
-					this.state = 271;
+					this.state = 331;
 					this.functionDecl();
 					}
 					break;
 				case 2:
 					{
-					this.state = 272;
+					this.state = 332;
 					this.topDecl();
 					}
 					break;
 				}
 				}
-				this.state = 277;
+				this.state = 337;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
-			this.state = 278;
+			this.state = 338;
 			this.match(IdlParser.RBRACE);
 			}
 		}
@@ -1283,54 +1576,54 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public functionDecl(): FunctionDeclContext {
 		let localctx: FunctionDeclContext = new FunctionDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 30, IdlParser.RULE_functionDecl);
+		this.enterRule(localctx, 40, IdlParser.RULE_functionDecl);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 281;
+			this.state = 341;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===1) {
 				{
-				this.state = 280;
+				this.state = 340;
 				this.documentation();
 				}
 			}
 
-			this.state = 283;
+			this.state = 343;
 			this.typeRef();
-			this.state = 284;
+			this.state = 344;
 			localctx._Name = this.match(IdlParser.IDENTIFIER);
-			this.state = 289;
+			this.state = 349;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===16) {
+			if (_la===20) {
 				{
-				this.state = 285;
+				this.state = 345;
 				this.match(IdlParser.LANGLE);
-				this.state = 286;
+				this.state = 346;
 				this.customizableNameDecl();
-				this.state = 287;
+				this.state = 347;
 				this.match(IdlParser.RANGLE);
 				}
 			}
 
-			this.state = 291;
+			this.state = 351;
 			this.match(IdlParser.LPAREN);
-			this.state = 293;
+			this.state = 353;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if ((((_la) & ~0x1F) === 0 && ((1 << _la) & 402661376) !== 0) || _la===63) {
+			if (((((_la - 17)) & ~0x1F) === 0 && ((1 << (_la - 17)) & 98305) !== 0) || _la===68) {
 				{
-				this.state = 292;
+				this.state = 352;
 				this.parametersDecl();
 				}
 			}
 
-			this.state = 295;
+			this.state = 355;
 			this.match(IdlParser.RPAREN);
-			this.state = 296;
+			this.state = 356;
 			this.match(IdlParser.SEMICOLON);
 			}
 		}
@@ -1351,38 +1644,38 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public parametersDecl(): ParametersDeclContext {
 		let localctx: ParametersDeclContext = new ParametersDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 32, IdlParser.RULE_parametersDecl);
+		this.enterRule(localctx, 42, IdlParser.RULE_parametersDecl);
 		let _la: number;
 		try {
 			let _alt: number;
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 298;
+			this.state = 358;
 			this.parameter();
-			this.state = 303;
+			this.state = 363;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 50, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 59, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					{
 					{
-					this.state = 299;
+					this.state = 359;
 					this.match(IdlParser.COMMA);
-					this.state = 300;
+					this.state = 360;
 					this.parameter();
 					}
 					}
 				}
-				this.state = 305;
+				this.state = 365;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 50, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 59, this._ctx);
 			}
-			this.state = 307;
+			this.state = 367;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===12) {
+			if (_la===16) {
 				{
-				this.state = 306;
+				this.state = 366;
 				this.match(IdlParser.COMMA);
 				}
 			}
@@ -1406,36 +1699,36 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public parameter(): ParameterContext {
 		let localctx: ParameterContext = new ParameterContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 34, IdlParser.RULE_parameter);
+		this.enterRule(localctx, 44, IdlParser.RULE_parameter);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 310;
+			this.state = 370;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===27) {
+			if (_la===32) {
 				{
-				this.state = 309;
+				this.state = 369;
 				this.match(IdlParser.CONST);
 				}
 			}
 
-			this.state = 314;
+			this.state = 374;
 			this._errHandler.sync(this);
-			switch ( this._interp.adaptivePredict(this._input, 53, this._ctx) ) {
+			switch ( this._interp.adaptivePredict(this._input, 62, this._ctx) ) {
 			case 1:
 				{
-				this.state = 312;
+				this.state = 372;
 				localctx._Label = this.match(IdlParser.IDENTIFIER);
-				this.state = 313;
+				this.state = 373;
 				this.match(IdlParser.COLON);
 				}
 				break;
 			}
-			this.state = 316;
+			this.state = 376;
 			localctx._Type = this.typeRef();
-			this.state = 317;
+			this.state = 377;
 			localctx._Name = this.match(IdlParser.IDENTIFIER);
 			}
 		}
@@ -1456,46 +1749,46 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public propertyDecl(): PropertyDeclContext {
 		let localctx: PropertyDeclContext = new PropertyDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 36, IdlParser.RULE_propertyDecl);
+		this.enterRule(localctx, 46, IdlParser.RULE_propertyDecl);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 320;
+			this.state = 380;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===1) {
 				{
-				this.state = 319;
+				this.state = 379;
 				this.documentation();
 				}
 			}
 
-			this.state = 323;
+			this.state = 383;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===45) {
+			if (_la===50) {
 				{
-				this.state = 322;
+				this.state = 382;
 				this.match(IdlParser.GEN);
 				}
 			}
 
-			this.state = 325;
+			this.state = 385;
 			this.typeRef();
-			this.state = 326;
+			this.state = 386;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 328;
+			this.state = 388;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===46) {
+			if (_la===51) {
 				{
-				this.state = 327;
+				this.state = 387;
 				this.match(IdlParser.READONLY);
 				}
 			}
 
-			this.state = 330;
+			this.state = 390;
 			this.match(IdlParser.SEMICOLON);
 			}
 		}
@@ -1516,48 +1809,48 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public structFieldDecl(): StructFieldDeclContext {
 		let localctx: StructFieldDeclContext = new StructFieldDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 38, IdlParser.RULE_structFieldDecl);
+		this.enterRule(localctx, 48, IdlParser.RULE_structFieldDecl);
 		let _la: number;
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 333;
+			this.state = 393;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la===1) {
 				{
-				this.state = 332;
+				this.state = 392;
 				localctx._Doc = this.documentation();
 				}
 			}
 
-			this.state = 335;
+			this.state = 395;
 			localctx._Type = this.typeRef();
-			this.state = 336;
+			this.state = 396;
 			localctx._Name = this.match(IdlParser.IDENTIFIER);
-			this.state = 338;
+			this.state = 398;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===31) {
+			if (_la===36) {
 				{
-				this.state = 337;
+				this.state = 397;
 				localctx._Based = this.basedProtoInternal();
 				}
 			}
 
-			this.state = 342;
+			this.state = 402;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===53) {
+			if (_la===58) {
 				{
-				this.state = 340;
+				this.state = 400;
 				this.match(IdlParser.ASSIGN);
-				this.state = 341;
+				this.state = 401;
 				localctx._Expr = this.expr(0);
 				}
 			}
 
-			this.state = 344;
+			this.state = 404;
 			this.match(IdlParser.SEMICOLON);
 			}
 		}
@@ -1578,78 +1871,78 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public typeRef(): TypeRefContext {
 		let localctx: TypeRefContext = new TypeRefContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 40, IdlParser.RULE_typeRef);
+		this.enterRule(localctx, 50, IdlParser.RULE_typeRef);
 		let _la: number;
 		try {
 			let _alt: number;
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 347;
+			this.state = 407;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===28) {
+			if (_la===33) {
 				{
-				this.state = 346;
+				this.state = 406;
 				this.match(IdlParser.OPTIONAL);
 				}
 			}
 
-			this.state = 350;
+			this.state = 410;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===13) {
+			if (_la===17) {
 				{
-				this.state = 349;
+				this.state = 409;
 				localctx._GlobalNs = this.match(IdlParser.DOT);
 				}
 			}
 
-			this.state = 352;
+			this.state = 412;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 357;
+			this.state = 417;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 62, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 71, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					{
 					{
-					this.state = 353;
+					this.state = 413;
 					this.match(IdlParser.DOT);
-					this.state = 354;
+					this.state = 414;
 					this.match(IdlParser.IDENTIFIER);
 					}
 					}
 				}
-				this.state = 359;
+				this.state = 419;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 62, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 71, this._ctx);
 			}
-			this.state = 371;
+			this.state = 431;
 			this._errHandler.sync(this);
-			switch ( this._interp.adaptivePredict(this._input, 64, this._ctx) ) {
+			switch ( this._interp.adaptivePredict(this._input, 73, this._ctx) ) {
 			case 1:
 				{
-				this.state = 360;
+				this.state = 420;
 				this.match(IdlParser.LANGLE);
-				this.state = 361;
+				this.state = 421;
 				this.typeRef();
-				this.state = 366;
+				this.state = 426;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				while (_la===12) {
+				while (_la===16) {
 					{
 					{
-					this.state = 362;
+					this.state = 422;
 					this.match(IdlParser.COMMA);
-					this.state = 363;
+					this.state = 423;
 					this.typeRef();
 					}
 					}
-					this.state = 368;
+					this.state = 428;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
-				this.state = 369;
+				this.state = 429;
 				this.match(IdlParser.RANGLE);
 				}
 				break;
@@ -1673,60 +1966,60 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public customizableNameDecl(): CustomizableNameDeclContext {
 		let localctx: CustomizableNameDeclContext = new CustomizableNameDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 42, IdlParser.RULE_customizableNameDecl);
+		this.enterRule(localctx, 52, IdlParser.RULE_customizableNameDecl);
 		let _la: number;
 		try {
 			let _alt: number;
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 373;
+			this.state = 433;
 			_la = this._input.LA(1);
-			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 16515072) !== 0))) {
+			if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 528482304) !== 0))) {
 			this._errHandler.recoverInline(this);
 			}
 			else {
 				this._errHandler.reportMatch(this);
 			    this.consume();
 			}
-			this.state = 374;
+			this.state = 434;
 			this.match(IdlParser.COLON);
-			this.state = 375;
+			this.state = 435;
 			this.match(IdlParser.IDENTIFIER);
-			this.state = 382;
+			this.state = 442;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 65, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 74, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					{
 					{
-					this.state = 376;
+					this.state = 436;
 					this.match(IdlParser.COMMA);
-					this.state = 377;
+					this.state = 437;
 					_la = this._input.LA(1);
-					if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 16515072) !== 0))) {
+					if(!((((_la) & ~0x1F) === 0 && ((1 << _la) & 528482304) !== 0))) {
 					this._errHandler.recoverInline(this);
 					}
 					else {
 						this._errHandler.reportMatch(this);
 					    this.consume();
 					}
-					this.state = 378;
+					this.state = 438;
 					this.match(IdlParser.COLON);
-					this.state = 379;
+					this.state = 439;
 					this.match(IdlParser.IDENTIFIER);
 					}
 					}
 				}
-				this.state = 384;
+				this.state = 444;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 65, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 74, this._ctx);
 			}
-			this.state = 386;
+			this.state = 446;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===12) {
+			if (_la===16) {
 				{
-				this.state = 385;
+				this.state = 445;
 				this.match(IdlParser.COMMA);
 				}
 			}
@@ -1750,17 +2043,17 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public basedProtoTop(): BasedProtoTopContext {
 		let localctx: BasedProtoTopContext = new BasedProtoTopContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 44, IdlParser.RULE_basedProtoTop);
+		this.enterRule(localctx, 54, IdlParser.RULE_basedProtoTop);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 388;
+			this.state = 448;
 			this.match(IdlParser.BASED_ON);
-			this.state = 389;
+			this.state = 449;
 			this.match(IdlParser.STR_LITERAL);
-			this.state = 390;
+			this.state = 450;
 			this.match(IdlParser.COLON);
-			this.state = 391;
+			this.state = 451;
 			this.typeRef();
 			}
 		}
@@ -1781,13 +2074,13 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public basedProtoInternal(): BasedProtoInternalContext {
 		let localctx: BasedProtoInternalContext = new BasedProtoInternalContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 46, IdlParser.RULE_basedProtoInternal);
+		this.enterRule(localctx, 56, IdlParser.RULE_basedProtoInternal);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 393;
+			this.state = 453;
 			this.match(IdlParser.BASED_ON);
-			this.state = 394;
+			this.state = 454;
 			this.match(IdlParser.IDENTIFIER);
 			}
 		}
@@ -1808,13 +2101,13 @@ export default class IdlParser extends Parser {
 	// @RuleVersion(0)
 	public sourceDecl(): SourceDeclContext {
 		let localctx: SourceDeclContext = new SourceDeclContext(this, this._ctx, this.state);
-		this.enterRule(localctx, 48, IdlParser.RULE_sourceDecl);
+		this.enterRule(localctx, 58, IdlParser.RULE_sourceDecl);
 		try {
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 396;
+			this.state = 456;
 			this.match(IdlParser.CPP);
-			this.state = 397;
+			this.state = 457;
 			this.match(IdlParser.STR_LITERAL);
 			}
 		}
@@ -1845,44 +2138,44 @@ export default class IdlParser extends Parser {
 		let _parentState: number = this.state;
 		let localctx: ExprContext = new ExprContext(this, this._ctx, _parentState);
 		let _prevctx: ExprContext = localctx;
-		let _startState: number = 50;
-		this.enterRecursionRule(localctx, 50, IdlParser.RULE_expr, _p);
+		let _startState: number = 60;
+		this.enterRecursionRule(localctx, 60, IdlParser.RULE_expr, _p);
 		try {
 			let _alt: number;
 			this.enterOuterAlt(localctx, 1);
 			{
-			this.state = 405;
+			this.state = 465;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
-			case 56:
+			case 61:
 				{
-				this.state = 400;
+				this.state = 460;
 				this.match(IdlParser.INT_LITERAL);
 				}
 				break;
-			case 59:
+			case 64:
 				{
-				this.state = 401;
+				this.state = 461;
 				this.match(IdlParser.STR_LITERAL);
 				}
 				break;
-			case 57:
+			case 62:
 				{
-				this.state = 402;
+				this.state = 462;
 				this.match(IdlParser.FLOAT_LITERAL);
 				}
 				break;
-			case 58:
+			case 63:
 				{
-				this.state = 403;
+				this.state = 463;
 				this.match(IdlParser.DOUBLE_LITERAL);
 				}
 				break;
-			case 13:
-			case 28:
-			case 63:
+			case 17:
+			case 33:
+			case 68:
 				{
-				this.state = 404;
+				this.state = 464;
 				this.typeRef();
 				}
 				break;
@@ -1890,9 +2183,9 @@ export default class IdlParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			this._ctx.stop = this._input.LT(-1);
-			this.state = 418;
+			this.state = 478;
 			this._errHandler.sync(this);
-			_alt = this._interp.adaptivePredict(this._input, 69, this._ctx);
+			_alt = this._interp.adaptivePredict(this._input, 78, this._ctx);
 			while (_alt !== 2 && _alt !== ATN.INVALID_ALT_NUMBER) {
 				if (_alt === 1) {
 					if (this._parseListeners != null) {
@@ -1900,20 +2193,20 @@ export default class IdlParser extends Parser {
 					}
 					_prevctx = localctx;
 					{
-					this.state = 416;
+					this.state = 476;
 					this._errHandler.sync(this);
-					switch ( this._interp.adaptivePredict(this._input, 68, this._ctx) ) {
+					switch ( this._interp.adaptivePredict(this._input, 77, this._ctx) ) {
 					case 1:
 						{
 						localctx = new ExprContext(this, _parentctx, _parentState);
 						this.pushNewRecursionContext(localctx, _startState, IdlParser.RULE_expr);
-						this.state = 407;
+						this.state = 467;
 						if (!(this.precpred(this._ctx, 3))) {
 							throw this.createFailedPredicateException("this.precpred(this._ctx, 3)");
 						}
-						this.state = 408;
+						this.state = 468;
 						this.match(IdlParser.BINOR);
-						this.state = 409;
+						this.state = 469;
 						this.expr(4);
 						}
 						break;
@@ -1921,13 +2214,13 @@ export default class IdlParser extends Parser {
 						{
 						localctx = new ExprContext(this, _parentctx, _parentState);
 						this.pushNewRecursionContext(localctx, _startState, IdlParser.RULE_expr);
-						this.state = 410;
+						this.state = 470;
 						if (!(this.precpred(this._ctx, 2))) {
 							throw this.createFailedPredicateException("this.precpred(this._ctx, 2)");
 						}
-						this.state = 411;
+						this.state = 471;
 						this.match(IdlParser.LSHIFT);
-						this.state = 412;
+						this.state = 472;
 						this.expr(3);
 						}
 						break;
@@ -1935,22 +2228,22 @@ export default class IdlParser extends Parser {
 						{
 						localctx = new ExprContext(this, _parentctx, _parentState);
 						this.pushNewRecursionContext(localctx, _startState, IdlParser.RULE_expr);
-						this.state = 413;
+						this.state = 473;
 						if (!(this.precpred(this._ctx, 1))) {
 							throw this.createFailedPredicateException("this.precpred(this._ctx, 1)");
 						}
-						this.state = 414;
+						this.state = 474;
 						this.match(IdlParser.ASSIGN);
-						this.state = 415;
+						this.state = 475;
 						this.expr(2);
 						}
 						break;
 					}
 					}
 				}
-				this.state = 420;
+				this.state = 480;
 				this._errHandler.sync(this);
-				_alt = this._interp.adaptivePredict(this._input, 69, this._ctx);
+				_alt = this._interp.adaptivePredict(this._input, 78, this._ctx);
 			}
 			}
 		}
@@ -1971,7 +2264,7 @@ export default class IdlParser extends Parser {
 
 	public sempred(localctx: RuleContext, ruleIndex: number, predIndex: number): boolean {
 		switch (ruleIndex) {
-		case 25:
+		case 30:
 			return this.expr_sempred(localctx as ExprContext, predIndex);
 		}
 		return true;
@@ -1988,150 +2281,172 @@ export default class IdlParser extends Parser {
 		return true;
 	}
 
-	public static readonly _serializedATN: number[] = [4,1,68,422,2,0,7,0,2,
+	public static readonly _serializedATN: number[] = [4,1,75,482,2,0,7,0,2,
 	1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,7,7,2,8,7,8,2,9,7,9,2,
 	10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,14,2,15,7,15,2,16,7,16,2,17,
 	7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,21,2,22,7,22,2,23,7,23,2,24,7,
-	24,2,25,7,25,1,0,3,0,54,8,0,1,0,5,0,57,8,0,10,0,12,0,60,9,0,1,0,5,0,63,
-	8,0,10,0,12,0,66,9,0,1,1,1,1,1,1,1,1,1,1,3,1,73,8,1,1,2,1,2,1,2,1,2,1,3,
-	1,3,1,3,1,3,1,4,1,4,1,4,5,4,86,8,4,10,4,12,4,89,9,4,1,4,4,4,92,8,4,11,4,
-	12,4,93,1,5,1,5,1,6,3,6,99,8,6,1,6,3,6,102,8,6,1,6,3,6,105,8,6,1,6,3,6,
-	108,8,6,1,6,3,6,111,8,6,1,6,1,6,1,6,3,6,116,8,6,1,6,1,6,1,6,1,6,1,6,3,6,
-	123,8,6,1,6,1,6,3,6,127,8,6,1,6,1,6,1,6,1,6,5,6,133,8,6,10,6,12,6,136,9,
-	6,1,6,1,6,1,7,1,7,1,8,3,8,143,8,8,1,8,3,8,146,8,8,1,8,3,8,149,8,8,1,8,1,
-	8,1,8,1,8,1,8,1,8,3,8,157,8,8,1,8,3,8,160,8,8,1,8,1,8,1,8,1,8,1,9,1,9,1,
-	9,5,9,169,8,9,10,9,12,9,172,9,9,1,9,3,9,175,8,9,1,10,3,10,178,8,10,1,10,
-	1,10,1,10,3,10,183,8,10,1,11,3,11,186,8,11,1,11,3,11,189,8,11,1,11,1,11,
-	1,11,1,11,1,11,1,11,3,11,197,8,11,1,11,1,11,5,11,201,8,11,10,11,12,11,204,
-	9,11,1,11,1,11,1,12,3,12,209,8,12,1,12,3,12,212,8,12,1,12,3,12,215,8,12,
-	1,12,3,12,218,8,12,1,12,3,12,221,8,12,1,12,1,12,1,12,1,12,3,12,227,8,12,
-	1,12,1,12,1,12,1,12,3,12,233,8,12,1,12,3,12,236,8,12,1,12,1,12,1,12,5,12,
-	241,8,12,10,12,12,12,244,9,12,1,12,1,12,1,13,1,13,1,14,3,14,251,8,14,1,
-	14,3,14,254,8,14,1,14,1,14,1,14,3,14,259,8,14,1,14,3,14,262,8,14,1,14,1,
-	14,1,14,1,14,1,14,3,14,269,8,14,1,14,1,14,1,14,5,14,274,8,14,10,14,12,14,
-	277,9,14,1,14,1,14,1,15,3,15,282,8,15,1,15,1,15,1,15,1,15,1,15,1,15,3,15,
-	290,8,15,1,15,1,15,3,15,294,8,15,1,15,1,15,1,15,1,16,1,16,1,16,5,16,302,
-	8,16,10,16,12,16,305,9,16,1,16,3,16,308,8,16,1,17,3,17,311,8,17,1,17,1,
-	17,3,17,315,8,17,1,17,1,17,1,17,1,18,3,18,321,8,18,1,18,3,18,324,8,18,1,
-	18,1,18,1,18,3,18,329,8,18,1,18,1,18,1,19,3,19,334,8,19,1,19,1,19,1,19,
-	3,19,339,8,19,1,19,1,19,3,19,343,8,19,1,19,1,19,1,20,3,20,348,8,20,1,20,
-	3,20,351,8,20,1,20,1,20,1,20,5,20,356,8,20,10,20,12,20,359,9,20,1,20,1,
-	20,1,20,1,20,5,20,365,8,20,10,20,12,20,368,9,20,1,20,1,20,3,20,372,8,20,
-	1,21,1,21,1,21,1,21,1,21,1,21,1,21,5,21,381,8,21,10,21,12,21,384,9,21,1,
-	21,3,21,387,8,21,1,22,1,22,1,22,1,22,1,22,1,23,1,23,1,23,1,24,1,24,1,24,
-	1,25,1,25,1,25,1,25,1,25,1,25,3,25,406,8,25,1,25,1,25,1,25,1,25,1,25,1,
-	25,1,25,1,25,1,25,5,25,417,8,25,10,25,12,25,420,9,25,1,25,0,1,50,26,0,2,
-	4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,0,
-	4,1,0,4,7,1,0,43,44,1,0,37,38,1,0,18,23,473,0,53,1,0,0,0,2,72,1,0,0,0,4,
-	74,1,0,0,0,6,78,1,0,0,0,8,91,1,0,0,0,10,95,1,0,0,0,12,98,1,0,0,0,14,139,
-	1,0,0,0,16,142,1,0,0,0,18,165,1,0,0,0,20,177,1,0,0,0,22,185,1,0,0,0,24,
-	208,1,0,0,0,26,247,1,0,0,0,28,250,1,0,0,0,30,281,1,0,0,0,32,298,1,0,0,0,
-	34,310,1,0,0,0,36,320,1,0,0,0,38,333,1,0,0,0,40,347,1,0,0,0,42,373,1,0,
-	0,0,44,388,1,0,0,0,46,393,1,0,0,0,48,396,1,0,0,0,50,405,1,0,0,0,52,54,3,
-	6,3,0,53,52,1,0,0,0,53,54,1,0,0,0,54,58,1,0,0,0,55,57,3,4,2,0,56,55,1,0,
-	0,0,57,60,1,0,0,0,58,56,1,0,0,0,58,59,1,0,0,0,59,64,1,0,0,0,60,58,1,0,0,
-	0,61,63,3,2,1,0,62,61,1,0,0,0,63,66,1,0,0,0,64,62,1,0,0,0,64,65,1,0,0,0,
-	65,1,1,0,0,0,66,64,1,0,0,0,67,73,3,12,6,0,68,73,3,16,8,0,69,73,3,22,11,
-	0,70,73,3,24,12,0,71,73,3,28,14,0,72,67,1,0,0,0,72,68,1,0,0,0,72,69,1,0,
-	0,0,72,70,1,0,0,0,72,71,1,0,0,0,73,3,1,0,0,0,74,75,5,26,0,0,75,76,5,59,
-	0,0,76,77,5,15,0,0,77,5,1,0,0,0,78,79,5,25,0,0,79,80,5,63,0,0,80,81,5,15,
-	0,0,81,7,1,0,0,0,82,87,5,1,0,0,83,86,5,3,0,0,84,86,3,10,5,0,85,83,1,0,0,
-	0,85,84,1,0,0,0,86,89,1,0,0,0,87,85,1,0,0,0,87,88,1,0,0,0,88,90,1,0,0,0,
-	89,87,1,0,0,0,90,92,5,2,0,0,91,82,1,0,0,0,92,93,1,0,0,0,93,91,1,0,0,0,93,
-	94,1,0,0,0,94,9,1,0,0,0,95,96,7,0,0,0,96,11,1,0,0,0,97,99,3,8,4,0,98,97,
-	1,0,0,0,98,99,1,0,0,0,99,115,1,0,0,0,100,102,5,48,0,0,101,100,1,0,0,0,101,
-	102,1,0,0,0,102,104,1,0,0,0,103,105,5,41,0,0,104,103,1,0,0,0,104,105,1,
-	0,0,0,105,107,1,0,0,0,106,108,5,42,0,0,107,106,1,0,0,0,107,108,1,0,0,0,
-	108,110,1,0,0,0,109,111,3,14,7,0,110,109,1,0,0,0,110,111,1,0,0,0,111,112,
-	1,0,0,0,112,116,5,40,0,0,113,114,5,47,0,0,114,116,5,49,0,0,115,101,1,0,
-	0,0,115,113,1,0,0,0,116,117,1,0,0,0,117,122,5,63,0,0,118,119,5,10,0,0,119,
-	120,3,42,21,0,120,121,5,11,0,0,121,123,1,0,0,0,122,118,1,0,0,0,122,123,
-	1,0,0,0,123,126,1,0,0,0,124,125,5,14,0,0,125,127,3,40,20,0,126,124,1,0,
-	0,0,126,127,1,0,0,0,127,128,1,0,0,0,128,134,5,8,0,0,129,133,3,30,15,0,130,
-	133,3,36,18,0,131,133,3,2,1,0,132,129,1,0,0,0,132,130,1,0,0,0,132,131,1,
-	0,0,0,133,136,1,0,0,0,134,132,1,0,0,0,134,135,1,0,0,0,135,137,1,0,0,0,136,
-	134,1,0,0,0,137,138,5,9,0,0,138,13,1,0,0,0,139,140,7,1,0,0,140,15,1,0,0,
-	0,141,143,3,8,4,0,142,141,1,0,0,0,142,143,1,0,0,0,143,145,1,0,0,0,144,146,
-	3,48,24,0,145,144,1,0,0,0,145,146,1,0,0,0,146,148,1,0,0,0,147,149,5,34,
-	0,0,148,147,1,0,0,0,148,149,1,0,0,0,149,150,1,0,0,0,150,151,5,33,0,0,151,
-	156,5,63,0,0,152,153,5,10,0,0,153,154,3,42,21,0,154,155,5,11,0,0,155,157,
-	1,0,0,0,156,152,1,0,0,0,156,157,1,0,0,0,157,159,1,0,0,0,158,160,3,44,22,
-	0,159,158,1,0,0,0,159,160,1,0,0,0,160,161,1,0,0,0,161,162,5,8,0,0,162,163,
-	3,18,9,0,163,164,5,9,0,0,164,17,1,0,0,0,165,170,3,20,10,0,166,167,5,12,
-	0,0,167,169,3,20,10,0,168,166,1,0,0,0,169,172,1,0,0,0,170,168,1,0,0,0,170,
-	171,1,0,0,0,171,174,1,0,0,0,172,170,1,0,0,0,173,175,5,12,0,0,174,173,1,
-	0,0,0,174,175,1,0,0,0,175,19,1,0,0,0,176,178,3,8,4,0,177,176,1,0,0,0,177,
-	178,1,0,0,0,178,179,1,0,0,0,179,182,5,63,0,0,180,181,5,53,0,0,181,183,3,
-	50,25,0,182,180,1,0,0,0,182,183,1,0,0,0,183,21,1,0,0,0,184,186,3,8,4,0,
-	185,184,1,0,0,0,185,186,1,0,0,0,186,188,1,0,0,0,187,189,3,48,24,0,188,187,
-	1,0,0,0,188,189,1,0,0,0,189,190,1,0,0,0,190,191,5,35,0,0,191,196,5,63,0,
-	0,192,193,5,10,0,0,193,194,3,42,21,0,194,195,5,11,0,0,195,197,1,0,0,0,196,
-	192,1,0,0,0,196,197,1,0,0,0,197,198,1,0,0,0,198,202,5,8,0,0,199,201,3,38,
-	19,0,200,199,1,0,0,0,201,204,1,0,0,0,202,200,1,0,0,0,202,203,1,0,0,0,203,
-	205,1,0,0,0,204,202,1,0,0,0,205,206,5,9,0,0,206,23,1,0,0,0,207,209,3,8,
-	4,0,208,207,1,0,0,0,208,209,1,0,0,0,209,211,1,0,0,0,210,212,3,48,24,0,211,
-	210,1,0,0,0,211,212,1,0,0,0,212,214,1,0,0,0,213,215,5,39,0,0,214,213,1,
-	0,0,0,214,215,1,0,0,0,215,217,1,0,0,0,216,218,5,32,0,0,217,216,1,0,0,0,
-	217,218,1,0,0,0,218,220,1,0,0,0,219,221,3,26,13,0,220,219,1,0,0,0,220,221,
-	1,0,0,0,221,222,1,0,0,0,222,223,5,36,0,0,223,226,5,63,0,0,224,225,5,14,
-	0,0,225,227,3,40,20,0,226,224,1,0,0,0,226,227,1,0,0,0,227,232,1,0,0,0,228,
-	229,5,10,0,0,229,230,3,42,21,0,230,231,5,11,0,0,231,233,1,0,0,0,232,228,
-	1,0,0,0,232,233,1,0,0,0,233,235,1,0,0,0,234,236,3,44,22,0,235,234,1,0,0,
-	0,235,236,1,0,0,0,236,237,1,0,0,0,237,242,5,8,0,0,238,241,3,2,1,0,239,241,
-	3,38,19,0,240,238,1,0,0,0,240,239,1,0,0,0,241,244,1,0,0,0,242,240,1,0,0,
-	0,242,243,1,0,0,0,243,245,1,0,0,0,244,242,1,0,0,0,245,246,5,9,0,0,246,25,
-	1,0,0,0,247,248,7,2,0,0,248,27,1,0,0,0,249,251,3,8,4,0,250,249,1,0,0,0,
-	250,251,1,0,0,0,251,261,1,0,0,0,252,254,5,51,0,0,253,252,1,0,0,0,253,254,
-	1,0,0,0,254,255,1,0,0,0,255,256,5,52,0,0,256,262,5,40,0,0,257,259,5,50,
-	0,0,258,257,1,0,0,0,258,259,1,0,0,0,259,260,1,0,0,0,260,262,5,49,0,0,261,
-	253,1,0,0,0,261,258,1,0,0,0,262,263,1,0,0,0,263,268,5,63,0,0,264,265,5,
-	10,0,0,265,266,3,42,21,0,266,267,5,11,0,0,267,269,1,0,0,0,268,264,1,0,0,
-	0,268,269,1,0,0,0,269,270,1,0,0,0,270,275,5,8,0,0,271,274,3,30,15,0,272,
-	274,3,2,1,0,273,271,1,0,0,0,273,272,1,0,0,0,274,277,1,0,0,0,275,273,1,0,
-	0,0,275,276,1,0,0,0,276,278,1,0,0,0,277,275,1,0,0,0,278,279,5,9,0,0,279,
-	29,1,0,0,0,280,282,3,8,4,0,281,280,1,0,0,0,281,282,1,0,0,0,282,283,1,0,
-	0,0,283,284,3,40,20,0,284,289,5,63,0,0,285,286,5,16,0,0,286,287,3,42,21,
-	0,287,288,5,17,0,0,288,290,1,0,0,0,289,285,1,0,0,0,289,290,1,0,0,0,290,
-	291,1,0,0,0,291,293,5,10,0,0,292,294,3,32,16,0,293,292,1,0,0,0,293,294,
-	1,0,0,0,294,295,1,0,0,0,295,296,5,11,0,0,296,297,5,15,0,0,297,31,1,0,0,
-	0,298,303,3,34,17,0,299,300,5,12,0,0,300,302,3,34,17,0,301,299,1,0,0,0,
-	302,305,1,0,0,0,303,301,1,0,0,0,303,304,1,0,0,0,304,307,1,0,0,0,305,303,
-	1,0,0,0,306,308,5,12,0,0,307,306,1,0,0,0,307,308,1,0,0,0,308,33,1,0,0,0,
-	309,311,5,27,0,0,310,309,1,0,0,0,310,311,1,0,0,0,311,314,1,0,0,0,312,313,
-	5,63,0,0,313,315,5,14,0,0,314,312,1,0,0,0,314,315,1,0,0,0,315,316,1,0,0,
-	0,316,317,3,40,20,0,317,318,5,63,0,0,318,35,1,0,0,0,319,321,3,8,4,0,320,
-	319,1,0,0,0,320,321,1,0,0,0,321,323,1,0,0,0,322,324,5,45,0,0,323,322,1,
-	0,0,0,323,324,1,0,0,0,324,325,1,0,0,0,325,326,3,40,20,0,326,328,5,63,0,
-	0,327,329,5,46,0,0,328,327,1,0,0,0,328,329,1,0,0,0,329,330,1,0,0,0,330,
-	331,5,15,0,0,331,37,1,0,0,0,332,334,3,8,4,0,333,332,1,0,0,0,333,334,1,0,
-	0,0,334,335,1,0,0,0,335,336,3,40,20,0,336,338,5,63,0,0,337,339,3,46,23,
-	0,338,337,1,0,0,0,338,339,1,0,0,0,339,342,1,0,0,0,340,341,5,53,0,0,341,
-	343,3,50,25,0,342,340,1,0,0,0,342,343,1,0,0,0,343,344,1,0,0,0,344,345,5,
-	15,0,0,345,39,1,0,0,0,346,348,5,28,0,0,347,346,1,0,0,0,347,348,1,0,0,0,
-	348,350,1,0,0,0,349,351,5,13,0,0,350,349,1,0,0,0,350,351,1,0,0,0,351,352,
-	1,0,0,0,352,357,5,63,0,0,353,354,5,13,0,0,354,356,5,63,0,0,355,353,1,0,
-	0,0,356,359,1,0,0,0,357,355,1,0,0,0,357,358,1,0,0,0,358,371,1,0,0,0,359,
-	357,1,0,0,0,360,361,5,16,0,0,361,366,3,40,20,0,362,363,5,12,0,0,363,365,
-	3,40,20,0,364,362,1,0,0,0,365,368,1,0,0,0,366,364,1,0,0,0,366,367,1,0,0,
-	0,367,369,1,0,0,0,368,366,1,0,0,0,369,370,5,17,0,0,370,372,1,0,0,0,371,
-	360,1,0,0,0,371,372,1,0,0,0,372,41,1,0,0,0,373,374,7,3,0,0,374,375,5,14,
-	0,0,375,382,5,63,0,0,376,377,5,12,0,0,377,378,7,3,0,0,378,379,5,14,0,0,
-	379,381,5,63,0,0,380,376,1,0,0,0,381,384,1,0,0,0,382,380,1,0,0,0,382,383,
-	1,0,0,0,383,386,1,0,0,0,384,382,1,0,0,0,385,387,5,12,0,0,386,385,1,0,0,
-	0,386,387,1,0,0,0,387,43,1,0,0,0,388,389,5,31,0,0,389,390,5,59,0,0,390,
-	391,5,14,0,0,391,392,3,40,20,0,392,45,1,0,0,0,393,394,5,31,0,0,394,395,
-	5,63,0,0,395,47,1,0,0,0,396,397,5,18,0,0,397,398,5,59,0,0,398,49,1,0,0,
-	0,399,400,6,25,-1,0,400,406,5,56,0,0,401,406,5,59,0,0,402,406,5,57,0,0,
-	403,406,5,58,0,0,404,406,3,40,20,0,405,399,1,0,0,0,405,401,1,0,0,0,405,
-	402,1,0,0,0,405,403,1,0,0,0,405,404,1,0,0,0,406,418,1,0,0,0,407,408,10,
-	3,0,0,408,409,5,55,0,0,409,417,3,50,25,4,410,411,10,2,0,0,411,412,5,54,
-	0,0,412,417,3,50,25,3,413,414,10,1,0,0,414,415,5,53,0,0,415,417,3,50,25,
-	2,416,407,1,0,0,0,416,410,1,0,0,0,416,413,1,0,0,0,417,420,1,0,0,0,418,416,
-	1,0,0,0,418,419,1,0,0,0,419,51,1,0,0,0,420,418,1,0,0,0,70,53,58,64,72,85,
-	87,93,98,101,104,107,110,115,122,126,132,134,142,145,148,156,159,170,174,
-	177,182,185,188,196,202,208,211,214,217,220,226,232,235,240,242,250,253,
-	258,261,268,273,275,281,289,293,303,307,310,314,320,323,328,333,338,342,
-	347,350,357,366,371,382,386,405,416,418];
+	24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,28,2,29,7,29,2,30,7,30,1,0,3,0,
+	64,8,0,1,0,5,0,67,8,0,10,0,12,0,70,9,0,1,0,5,0,73,8,0,10,0,12,0,76,9,0,
+	1,1,1,1,1,1,1,1,1,1,3,1,83,8,1,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,4,1,4,
+	1,4,1,4,1,4,5,4,98,8,4,10,4,12,4,101,9,4,1,4,4,4,104,8,4,11,4,12,4,105,
+	1,5,1,5,4,5,110,8,5,11,5,12,5,111,1,6,1,6,1,7,1,7,1,7,3,7,119,8,7,1,7,1,
+	7,1,7,1,7,5,7,125,8,7,10,7,12,7,128,9,7,1,7,3,7,131,8,7,3,7,133,8,7,1,7,
+	1,7,1,8,1,8,1,8,1,8,1,9,1,9,1,9,1,10,1,10,3,10,146,8,10,1,10,1,10,1,10,
+	3,10,151,8,10,5,10,153,8,10,10,10,12,10,156,9,10,1,11,3,11,159,8,11,1,11,
+	3,11,162,8,11,1,11,3,11,165,8,11,1,11,3,11,168,8,11,1,11,3,11,171,8,11,
+	1,11,1,11,1,11,3,11,176,8,11,1,11,1,11,1,11,1,11,1,11,3,11,183,8,11,1,11,
+	1,11,3,11,187,8,11,1,11,1,11,1,11,1,11,5,11,193,8,11,10,11,12,11,196,9,
+	11,1,11,1,11,1,12,1,12,1,13,3,13,203,8,13,1,13,3,13,206,8,13,1,13,3,13,
+	209,8,13,1,13,1,13,1,13,1,13,1,13,1,13,3,13,217,8,13,1,13,3,13,220,8,13,
+	1,13,1,13,1,13,1,13,1,14,1,14,1,14,5,14,229,8,14,10,14,12,14,232,9,14,1,
+	14,3,14,235,8,14,1,15,3,15,238,8,15,1,15,1,15,1,15,3,15,243,8,15,1,16,3,
+	16,246,8,16,1,16,3,16,249,8,16,1,16,1,16,1,16,1,16,1,16,1,16,3,16,257,8,
+	16,1,16,1,16,5,16,261,8,16,10,16,12,16,264,9,16,1,16,1,16,1,17,3,17,269,
+	8,17,1,17,3,17,272,8,17,1,17,3,17,275,8,17,1,17,3,17,278,8,17,1,17,3,17,
+	281,8,17,1,17,1,17,1,17,1,17,3,17,287,8,17,1,17,1,17,1,17,1,17,3,17,293,
+	8,17,1,17,3,17,296,8,17,1,17,1,17,1,17,5,17,301,8,17,10,17,12,17,304,9,
+	17,1,17,1,17,1,18,1,18,1,19,3,19,311,8,19,1,19,3,19,314,8,19,1,19,1,19,
+	1,19,3,19,319,8,19,1,19,3,19,322,8,19,1,19,1,19,1,19,1,19,1,19,3,19,329,
+	8,19,1,19,1,19,1,19,5,19,334,8,19,10,19,12,19,337,9,19,1,19,1,19,1,20,3,
+	20,342,8,20,1,20,1,20,1,20,1,20,1,20,1,20,3,20,350,8,20,1,20,1,20,3,20,
+	354,8,20,1,20,1,20,1,20,1,21,1,21,1,21,5,21,362,8,21,10,21,12,21,365,9,
+	21,1,21,3,21,368,8,21,1,22,3,22,371,8,22,1,22,1,22,3,22,375,8,22,1,22,1,
+	22,1,22,1,23,3,23,381,8,23,1,23,3,23,384,8,23,1,23,1,23,1,23,3,23,389,8,
+	23,1,23,1,23,1,24,3,24,394,8,24,1,24,1,24,1,24,3,24,399,8,24,1,24,1,24,
+	3,24,403,8,24,1,24,1,24,1,25,3,25,408,8,25,1,25,3,25,411,8,25,1,25,1,25,
+	1,25,5,25,416,8,25,10,25,12,25,419,9,25,1,25,1,25,1,25,1,25,5,25,425,8,
+	25,10,25,12,25,428,9,25,1,25,1,25,3,25,432,8,25,1,26,1,26,1,26,1,26,1,26,
+	1,26,1,26,5,26,441,8,26,10,26,12,26,444,9,26,1,26,3,26,447,8,26,1,27,1,
+	27,1,27,1,27,1,27,1,28,1,28,1,28,1,29,1,29,1,29,1,30,1,30,1,30,1,30,1,30,
+	1,30,3,30,466,8,30,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,30,5,30,477,
+	8,30,10,30,12,30,480,9,30,1,30,0,1,60,31,0,2,4,6,8,10,12,14,16,18,20,22,
+	24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,0,4,1,0,4,7,1,
+	0,48,49,1,0,42,43,1,0,23,28,539,0,63,1,0,0,0,2,82,1,0,0,0,4,84,1,0,0,0,
+	6,88,1,0,0,0,8,103,1,0,0,0,10,109,1,0,0,0,12,113,1,0,0,0,14,115,1,0,0,0,
+	16,136,1,0,0,0,18,140,1,0,0,0,20,143,1,0,0,0,22,158,1,0,0,0,24,199,1,0,
+	0,0,26,202,1,0,0,0,28,225,1,0,0,0,30,237,1,0,0,0,32,245,1,0,0,0,34,268,
+	1,0,0,0,36,307,1,0,0,0,38,310,1,0,0,0,40,341,1,0,0,0,42,358,1,0,0,0,44,
+	370,1,0,0,0,46,380,1,0,0,0,48,393,1,0,0,0,50,407,1,0,0,0,52,433,1,0,0,0,
+	54,448,1,0,0,0,56,453,1,0,0,0,58,456,1,0,0,0,60,465,1,0,0,0,62,64,3,6,3,
+	0,63,62,1,0,0,0,63,64,1,0,0,0,64,68,1,0,0,0,65,67,3,4,2,0,66,65,1,0,0,0,
+	67,70,1,0,0,0,68,66,1,0,0,0,68,69,1,0,0,0,69,74,1,0,0,0,70,68,1,0,0,0,71,
+	73,3,2,1,0,72,71,1,0,0,0,73,76,1,0,0,0,74,72,1,0,0,0,74,75,1,0,0,0,75,1,
+	1,0,0,0,76,74,1,0,0,0,77,83,3,22,11,0,78,83,3,26,13,0,79,83,3,32,16,0,80,
+	83,3,34,17,0,81,83,3,38,19,0,82,77,1,0,0,0,82,78,1,0,0,0,82,79,1,0,0,0,
+	82,80,1,0,0,0,82,81,1,0,0,0,83,3,1,0,0,0,84,85,5,31,0,0,85,86,5,64,0,0,
+	86,87,5,19,0,0,87,5,1,0,0,0,88,89,5,30,0,0,89,90,5,68,0,0,90,91,5,19,0,
+	0,91,7,1,0,0,0,92,99,5,1,0,0,93,98,3,10,5,0,94,98,3,12,6,0,95,98,3,16,8,
+	0,96,98,3,18,9,0,97,93,1,0,0,0,97,94,1,0,0,0,97,95,1,0,0,0,97,96,1,0,0,
+	0,98,101,1,0,0,0,99,97,1,0,0,0,99,100,1,0,0,0,100,102,1,0,0,0,101,99,1,
+	0,0,0,102,104,5,2,0,0,103,92,1,0,0,0,104,105,1,0,0,0,105,103,1,0,0,0,105,
+	106,1,0,0,0,106,9,1,0,0,0,107,110,5,3,0,0,108,110,3,14,7,0,109,107,1,0,
+	0,0,109,108,1,0,0,0,110,111,1,0,0,0,111,109,1,0,0,0,111,112,1,0,0,0,112,
+	11,1,0,0,0,113,114,7,0,0,0,114,13,1,0,0,0,115,132,5,8,0,0,116,133,3,50,
+	25,0,117,119,3,50,25,0,118,117,1,0,0,0,118,119,1,0,0,0,119,120,1,0,0,0,
+	120,121,5,22,0,0,121,130,5,68,0,0,122,126,5,14,0,0,123,125,3,20,10,0,124,
+	123,1,0,0,0,125,128,1,0,0,0,126,124,1,0,0,0,126,127,1,0,0,0,127,129,1,0,
+	0,0,128,126,1,0,0,0,129,131,5,15,0,0,130,122,1,0,0,0,130,131,1,0,0,0,131,
+	133,1,0,0,0,132,116,1,0,0,0,132,118,1,0,0,0,133,134,1,0,0,0,134,135,5,9,
+	0,0,135,15,1,0,0,0,136,137,5,10,0,0,137,138,5,68,0,0,138,139,3,10,5,0,139,
+	17,1,0,0,0,140,141,5,11,0,0,141,142,3,10,5,0,142,19,1,0,0,0,143,145,3,50,
+	25,0,144,146,5,68,0,0,145,144,1,0,0,0,145,146,1,0,0,0,146,154,1,0,0,0,147,
+	148,5,16,0,0,148,150,3,50,25,0,149,151,5,68,0,0,150,149,1,0,0,0,150,151,
+	1,0,0,0,151,153,1,0,0,0,152,147,1,0,0,0,153,156,1,0,0,0,154,152,1,0,0,0,
+	154,155,1,0,0,0,155,21,1,0,0,0,156,154,1,0,0,0,157,159,3,8,4,0,158,157,
+	1,0,0,0,158,159,1,0,0,0,159,175,1,0,0,0,160,162,5,53,0,0,161,160,1,0,0,
+	0,161,162,1,0,0,0,162,164,1,0,0,0,163,165,5,46,0,0,164,163,1,0,0,0,164,
+	165,1,0,0,0,165,167,1,0,0,0,166,168,5,47,0,0,167,166,1,0,0,0,167,168,1,
+	0,0,0,168,170,1,0,0,0,169,171,3,24,12,0,170,169,1,0,0,0,170,171,1,0,0,0,
+	171,172,1,0,0,0,172,176,5,45,0,0,173,174,5,52,0,0,174,176,5,54,0,0,175,
+	161,1,0,0,0,175,173,1,0,0,0,176,177,1,0,0,0,177,182,5,68,0,0,178,179,5,
+	14,0,0,179,180,3,52,26,0,180,181,5,15,0,0,181,183,1,0,0,0,182,178,1,0,0,
+	0,182,183,1,0,0,0,183,186,1,0,0,0,184,185,5,18,0,0,185,187,3,50,25,0,186,
+	184,1,0,0,0,186,187,1,0,0,0,187,188,1,0,0,0,188,194,5,12,0,0,189,193,3,
+	40,20,0,190,193,3,46,23,0,191,193,3,2,1,0,192,189,1,0,0,0,192,190,1,0,0,
+	0,192,191,1,0,0,0,193,196,1,0,0,0,194,192,1,0,0,0,194,195,1,0,0,0,195,197,
+	1,0,0,0,196,194,1,0,0,0,197,198,5,13,0,0,198,23,1,0,0,0,199,200,7,1,0,0,
+	200,25,1,0,0,0,201,203,3,8,4,0,202,201,1,0,0,0,202,203,1,0,0,0,203,205,
+	1,0,0,0,204,206,3,58,29,0,205,204,1,0,0,0,205,206,1,0,0,0,206,208,1,0,0,
+	0,207,209,5,39,0,0,208,207,1,0,0,0,208,209,1,0,0,0,209,210,1,0,0,0,210,
+	211,5,38,0,0,211,216,5,68,0,0,212,213,5,14,0,0,213,214,3,52,26,0,214,215,
+	5,15,0,0,215,217,1,0,0,0,216,212,1,0,0,0,216,217,1,0,0,0,217,219,1,0,0,
+	0,218,220,3,54,27,0,219,218,1,0,0,0,219,220,1,0,0,0,220,221,1,0,0,0,221,
+	222,5,12,0,0,222,223,3,28,14,0,223,224,5,13,0,0,224,27,1,0,0,0,225,230,
+	3,30,15,0,226,227,5,16,0,0,227,229,3,30,15,0,228,226,1,0,0,0,229,232,1,
+	0,0,0,230,228,1,0,0,0,230,231,1,0,0,0,231,234,1,0,0,0,232,230,1,0,0,0,233,
+	235,5,16,0,0,234,233,1,0,0,0,234,235,1,0,0,0,235,29,1,0,0,0,236,238,3,8,
+	4,0,237,236,1,0,0,0,237,238,1,0,0,0,238,239,1,0,0,0,239,242,5,68,0,0,240,
+	241,5,58,0,0,241,243,3,60,30,0,242,240,1,0,0,0,242,243,1,0,0,0,243,31,1,
+	0,0,0,244,246,3,8,4,0,245,244,1,0,0,0,245,246,1,0,0,0,246,248,1,0,0,0,247,
+	249,3,58,29,0,248,247,1,0,0,0,248,249,1,0,0,0,249,250,1,0,0,0,250,251,5,
+	40,0,0,251,256,5,68,0,0,252,253,5,14,0,0,253,254,3,52,26,0,254,255,5,15,
+	0,0,255,257,1,0,0,0,256,252,1,0,0,0,256,257,1,0,0,0,257,258,1,0,0,0,258,
+	262,5,12,0,0,259,261,3,48,24,0,260,259,1,0,0,0,261,264,1,0,0,0,262,260,
+	1,0,0,0,262,263,1,0,0,0,263,265,1,0,0,0,264,262,1,0,0,0,265,266,5,13,0,
+	0,266,33,1,0,0,0,267,269,3,8,4,0,268,267,1,0,0,0,268,269,1,0,0,0,269,271,
+	1,0,0,0,270,272,3,58,29,0,271,270,1,0,0,0,271,272,1,0,0,0,272,274,1,0,0,
+	0,273,275,5,44,0,0,274,273,1,0,0,0,274,275,1,0,0,0,275,277,1,0,0,0,276,
+	278,5,37,0,0,277,276,1,0,0,0,277,278,1,0,0,0,278,280,1,0,0,0,279,281,3,
+	36,18,0,280,279,1,0,0,0,280,281,1,0,0,0,281,282,1,0,0,0,282,283,5,41,0,
+	0,283,286,5,68,0,0,284,285,5,18,0,0,285,287,3,50,25,0,286,284,1,0,0,0,286,
+	287,1,0,0,0,287,292,1,0,0,0,288,289,5,14,0,0,289,290,3,52,26,0,290,291,
+	5,15,0,0,291,293,1,0,0,0,292,288,1,0,0,0,292,293,1,0,0,0,293,295,1,0,0,
+	0,294,296,3,54,27,0,295,294,1,0,0,0,295,296,1,0,0,0,296,297,1,0,0,0,297,
+	302,5,12,0,0,298,301,3,2,1,0,299,301,3,48,24,0,300,298,1,0,0,0,300,299,
+	1,0,0,0,301,304,1,0,0,0,302,300,1,0,0,0,302,303,1,0,0,0,303,305,1,0,0,0,
+	304,302,1,0,0,0,305,306,5,13,0,0,306,35,1,0,0,0,307,308,7,2,0,0,308,37,
+	1,0,0,0,309,311,3,8,4,0,310,309,1,0,0,0,310,311,1,0,0,0,311,321,1,0,0,0,
+	312,314,5,56,0,0,313,312,1,0,0,0,313,314,1,0,0,0,314,315,1,0,0,0,315,316,
+	5,57,0,0,316,322,5,45,0,0,317,319,5,55,0,0,318,317,1,0,0,0,318,319,1,0,
+	0,0,319,320,1,0,0,0,320,322,5,54,0,0,321,313,1,0,0,0,321,318,1,0,0,0,322,
+	323,1,0,0,0,323,328,5,68,0,0,324,325,5,14,0,0,325,326,3,52,26,0,326,327,
+	5,15,0,0,327,329,1,0,0,0,328,324,1,0,0,0,328,329,1,0,0,0,329,330,1,0,0,
+	0,330,335,5,12,0,0,331,334,3,40,20,0,332,334,3,2,1,0,333,331,1,0,0,0,333,
+	332,1,0,0,0,334,337,1,0,0,0,335,333,1,0,0,0,335,336,1,0,0,0,336,338,1,0,
+	0,0,337,335,1,0,0,0,338,339,5,13,0,0,339,39,1,0,0,0,340,342,3,8,4,0,341,
+	340,1,0,0,0,341,342,1,0,0,0,342,343,1,0,0,0,343,344,3,50,25,0,344,349,5,
+	68,0,0,345,346,5,20,0,0,346,347,3,52,26,0,347,348,5,21,0,0,348,350,1,0,
+	0,0,349,345,1,0,0,0,349,350,1,0,0,0,350,351,1,0,0,0,351,353,5,14,0,0,352,
+	354,3,42,21,0,353,352,1,0,0,0,353,354,1,0,0,0,354,355,1,0,0,0,355,356,5,
+	15,0,0,356,357,5,19,0,0,357,41,1,0,0,0,358,363,3,44,22,0,359,360,5,16,0,
+	0,360,362,3,44,22,0,361,359,1,0,0,0,362,365,1,0,0,0,363,361,1,0,0,0,363,
+	364,1,0,0,0,364,367,1,0,0,0,365,363,1,0,0,0,366,368,5,16,0,0,367,366,1,
+	0,0,0,367,368,1,0,0,0,368,43,1,0,0,0,369,371,5,32,0,0,370,369,1,0,0,0,370,
+	371,1,0,0,0,371,374,1,0,0,0,372,373,5,68,0,0,373,375,5,18,0,0,374,372,1,
+	0,0,0,374,375,1,0,0,0,375,376,1,0,0,0,376,377,3,50,25,0,377,378,5,68,0,
+	0,378,45,1,0,0,0,379,381,3,8,4,0,380,379,1,0,0,0,380,381,1,0,0,0,381,383,
+	1,0,0,0,382,384,5,50,0,0,383,382,1,0,0,0,383,384,1,0,0,0,384,385,1,0,0,
+	0,385,386,3,50,25,0,386,388,5,68,0,0,387,389,5,51,0,0,388,387,1,0,0,0,388,
+	389,1,0,0,0,389,390,1,0,0,0,390,391,5,19,0,0,391,47,1,0,0,0,392,394,3,8,
+	4,0,393,392,1,0,0,0,393,394,1,0,0,0,394,395,1,0,0,0,395,396,3,50,25,0,396,
+	398,5,68,0,0,397,399,3,56,28,0,398,397,1,0,0,0,398,399,1,0,0,0,399,402,
+	1,0,0,0,400,401,5,58,0,0,401,403,3,60,30,0,402,400,1,0,0,0,402,403,1,0,
+	0,0,403,404,1,0,0,0,404,405,5,19,0,0,405,49,1,0,0,0,406,408,5,33,0,0,407,
+	406,1,0,0,0,407,408,1,0,0,0,408,410,1,0,0,0,409,411,5,17,0,0,410,409,1,
+	0,0,0,410,411,1,0,0,0,411,412,1,0,0,0,412,417,5,68,0,0,413,414,5,17,0,0,
+	414,416,5,68,0,0,415,413,1,0,0,0,416,419,1,0,0,0,417,415,1,0,0,0,417,418,
+	1,0,0,0,418,431,1,0,0,0,419,417,1,0,0,0,420,421,5,20,0,0,421,426,3,50,25,
+	0,422,423,5,16,0,0,423,425,3,50,25,0,424,422,1,0,0,0,425,428,1,0,0,0,426,
+	424,1,0,0,0,426,427,1,0,0,0,427,429,1,0,0,0,428,426,1,0,0,0,429,430,5,21,
+	0,0,430,432,1,0,0,0,431,420,1,0,0,0,431,432,1,0,0,0,432,51,1,0,0,0,433,
+	434,7,3,0,0,434,435,5,18,0,0,435,442,5,68,0,0,436,437,5,16,0,0,437,438,
+	7,3,0,0,438,439,5,18,0,0,439,441,5,68,0,0,440,436,1,0,0,0,441,444,1,0,0,
+	0,442,440,1,0,0,0,442,443,1,0,0,0,443,446,1,0,0,0,444,442,1,0,0,0,445,447,
+	5,16,0,0,446,445,1,0,0,0,446,447,1,0,0,0,447,53,1,0,0,0,448,449,5,36,0,
+	0,449,450,5,64,0,0,450,451,5,18,0,0,451,452,3,50,25,0,452,55,1,0,0,0,453,
+	454,5,36,0,0,454,455,5,68,0,0,455,57,1,0,0,0,456,457,5,23,0,0,457,458,5,
+	64,0,0,458,59,1,0,0,0,459,460,6,30,-1,0,460,466,5,61,0,0,461,466,5,64,0,
+	0,462,466,5,62,0,0,463,466,5,63,0,0,464,466,3,50,25,0,465,459,1,0,0,0,465,
+	461,1,0,0,0,465,462,1,0,0,0,465,463,1,0,0,0,465,464,1,0,0,0,466,478,1,0,
+	0,0,467,468,10,3,0,0,468,469,5,60,0,0,469,477,3,60,30,4,470,471,10,2,0,
+	0,471,472,5,59,0,0,472,477,3,60,30,3,473,474,10,1,0,0,474,475,5,58,0,0,
+	475,477,3,60,30,2,476,467,1,0,0,0,476,470,1,0,0,0,476,473,1,0,0,0,477,480,
+	1,0,0,0,478,476,1,0,0,0,478,479,1,0,0,0,479,61,1,0,0,0,480,478,1,0,0,0,
+	79,63,68,74,82,97,99,105,109,111,118,126,130,132,145,150,154,158,161,164,
+	167,170,175,182,186,192,194,202,205,208,216,219,230,234,237,242,245,248,
+	256,262,268,271,274,277,280,286,292,295,300,302,310,313,318,321,328,333,
+	335,341,349,353,363,367,370,374,380,383,388,393,398,402,407,410,417,426,
+	431,442,446,465,476,478];
 
 	private static __ATN: ATN;
 	public static get _ATN(): ATN {
@@ -2328,17 +2643,29 @@ export class DocumentationContext extends ParserRuleContext {
 	public DOC_END(i: number): TerminalNode {
 		return this.getToken(IdlParser.DOC_END, i);
 	}
-	public DOC_TEXT_list(): TerminalNode[] {
-	    	return this.getTokens(IdlParser.DOC_TEXT);
+	public documentationBlock_list(): DocumentationBlockContext[] {
+		return this.getTypedRuleContexts(DocumentationBlockContext) as DocumentationBlockContext[];
 	}
-	public DOC_TEXT(i: number): TerminalNode {
-		return this.getToken(IdlParser.DOC_TEXT, i);
+	public documentationBlock(i: number): DocumentationBlockContext {
+		return this.getTypedRuleContext(DocumentationBlockContext, i) as DocumentationBlockContext;
 	}
 	public documentationTag_list(): DocumentationTagContext[] {
 		return this.getTypedRuleContexts(DocumentationTagContext) as DocumentationTagContext[];
 	}
 	public documentationTag(i: number): DocumentationTagContext {
 		return this.getTypedRuleContext(DocumentationTagContext, i) as DocumentationTagContext;
+	}
+	public documentationParam_list(): DocumentationParamContext[] {
+		return this.getTypedRuleContexts(DocumentationParamContext) as DocumentationParamContext[];
+	}
+	public documentationParam(i: number): DocumentationParamContext {
+		return this.getTypedRuleContext(DocumentationParamContext, i) as DocumentationParamContext;
+	}
+	public documentationReturn_list(): DocumentationReturnContext[] {
+		return this.getTypedRuleContexts(DocumentationReturnContext) as DocumentationReturnContext[];
+	}
+	public documentationReturn(i: number): DocumentationReturnContext {
+		return this.getTypedRuleContext(DocumentationReturnContext, i) as DocumentationReturnContext;
 	}
     public get ruleIndex(): number {
     	return IdlParser.RULE_documentation;
@@ -2364,22 +2691,63 @@ export class DocumentationContext extends ParserRuleContext {
 }
 
 
+export class DocumentationBlockContext extends ParserRuleContext {
+	constructor(parser?: IdlParser, parent?: ParserRuleContext, invokingState?: number) {
+		super(parent, invokingState);
+    	this.parser = parser;
+	}
+	public DOC_TEXT_list(): TerminalNode[] {
+	    	return this.getTokens(IdlParser.DOC_TEXT);
+	}
+	public DOC_TEXT(i: number): TerminalNode {
+		return this.getToken(IdlParser.DOC_TEXT, i);
+	}
+	public documentationLink_list(): DocumentationLinkContext[] {
+		return this.getTypedRuleContexts(DocumentationLinkContext) as DocumentationLinkContext[];
+	}
+	public documentationLink(i: number): DocumentationLinkContext {
+		return this.getTypedRuleContext(DocumentationLinkContext, i) as DocumentationLinkContext;
+	}
+    public get ruleIndex(): number {
+    	return IdlParser.RULE_documentationBlock;
+	}
+	public enterRule(listener: IdlParserListener): void {
+	    if(listener.enterDocumentationBlock) {
+	 		listener.enterDocumentationBlock(this);
+		}
+	}
+	public exitRule(listener: IdlParserListener): void {
+	    if(listener.exitDocumentationBlock) {
+	 		listener.exitDocumentationBlock(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: IdlParserVisitor<Result>): Result {
+		if (visitor.visitDocumentationBlock) {
+			return visitor.visitDocumentationBlock(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
 export class DocumentationTagContext extends ParserRuleContext {
 	constructor(parser?: IdlParser, parent?: ParserRuleContext, invokingState?: number) {
 		super(parent, invokingState);
     	this.parser = parser;
 	}
-	public DOC_COMMERCIAL(): TerminalNode {
-		return this.getToken(IdlParser.DOC_COMMERCIAL, 0);
+	public COMMERCIAL_TAG(): TerminalNode {
+		return this.getToken(IdlParser.COMMERCIAL_TAG, 0);
 	}
-	public DOC_INTERNAL(): TerminalNode {
-		return this.getToken(IdlParser.DOC_INTERNAL, 0);
+	public INTERNAL_TAG(): TerminalNode {
+		return this.getToken(IdlParser.INTERNAL_TAG, 0);
 	}
-	public DOC_DEPRECATED(): TerminalNode {
-		return this.getToken(IdlParser.DOC_DEPRECATED, 0);
+	public DEPRECATED_TAG(): TerminalNode {
+		return this.getToken(IdlParser.DEPRECATED_TAG, 0);
 	}
-	public DOC_UNDOCUMENTED(): TerminalNode {
-		return this.getToken(IdlParser.DOC_UNDOCUMENTED, 0);
+	public UNDOCUMENTED_TAG(): TerminalNode {
+		return this.getToken(IdlParser.UNDOCUMENTED_TAG, 0);
 	}
     public get ruleIndex(): number {
     	return IdlParser.RULE_documentationTag;
@@ -2398,6 +2766,187 @@ export class DocumentationTagContext extends ParserRuleContext {
 	public accept<Result>(visitor: IdlParserVisitor<Result>): Result {
 		if (visitor.visitDocumentationTag) {
 			return visitor.visitDocumentationTag(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class DocumentationLinkContext extends ParserRuleContext {
+	public _Type!: TypeRefContext;
+	public _Member!: Token;
+	constructor(parser?: IdlParser, parent?: ParserRuleContext, invokingState?: number) {
+		super(parent, invokingState);
+    	this.parser = parser;
+	}
+	public LINK_TAG_BEGIN(): TerminalNode {
+		return this.getToken(IdlParser.LINK_TAG_BEGIN, 0);
+	}
+	public LINK_TAG_END(): TerminalNode {
+		return this.getToken(IdlParser.LINK_TAG_END, 0);
+	}
+	public NUM(): TerminalNode {
+		return this.getToken(IdlParser.NUM, 0);
+	}
+	public typeRef(): TypeRefContext {
+		return this.getTypedRuleContext(TypeRefContext, 0) as TypeRefContext;
+	}
+	public IDENTIFIER(): TerminalNode {
+		return this.getToken(IdlParser.IDENTIFIER, 0);
+	}
+	public LPAREN(): TerminalNode {
+		return this.getToken(IdlParser.LPAREN, 0);
+	}
+	public RPAREN(): TerminalNode {
+		return this.getToken(IdlParser.RPAREN, 0);
+	}
+	public parametersRef_list(): ParametersRefContext[] {
+		return this.getTypedRuleContexts(ParametersRefContext) as ParametersRefContext[];
+	}
+	public parametersRef(i: number): ParametersRefContext {
+		return this.getTypedRuleContext(ParametersRefContext, i) as ParametersRefContext;
+	}
+    public get ruleIndex(): number {
+    	return IdlParser.RULE_documentationLink;
+	}
+	public enterRule(listener: IdlParserListener): void {
+	    if(listener.enterDocumentationLink) {
+	 		listener.enterDocumentationLink(this);
+		}
+	}
+	public exitRule(listener: IdlParserListener): void {
+	    if(listener.exitDocumentationLink) {
+	 		listener.exitDocumentationLink(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: IdlParserVisitor<Result>): Result {
+		if (visitor.visitDocumentationLink) {
+			return visitor.visitDocumentationLink(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class DocumentationParamContext extends ParserRuleContext {
+	public _Member!: Token;
+	public _Desc!: DocumentationBlockContext;
+	constructor(parser?: IdlParser, parent?: ParserRuleContext, invokingState?: number) {
+		super(parent, invokingState);
+    	this.parser = parser;
+	}
+	public PARAM_TAG(): TerminalNode {
+		return this.getToken(IdlParser.PARAM_TAG, 0);
+	}
+	public IDENTIFIER(): TerminalNode {
+		return this.getToken(IdlParser.IDENTIFIER, 0);
+	}
+	public documentationBlock(): DocumentationBlockContext {
+		return this.getTypedRuleContext(DocumentationBlockContext, 0) as DocumentationBlockContext;
+	}
+    public get ruleIndex(): number {
+    	return IdlParser.RULE_documentationParam;
+	}
+	public enterRule(listener: IdlParserListener): void {
+	    if(listener.enterDocumentationParam) {
+	 		listener.enterDocumentationParam(this);
+		}
+	}
+	public exitRule(listener: IdlParserListener): void {
+	    if(listener.exitDocumentationParam) {
+	 		listener.exitDocumentationParam(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: IdlParserVisitor<Result>): Result {
+		if (visitor.visitDocumentationParam) {
+			return visitor.visitDocumentationParam(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class DocumentationReturnContext extends ParserRuleContext {
+	public _Desc!: DocumentationBlockContext;
+	constructor(parser?: IdlParser, parent?: ParserRuleContext, invokingState?: number) {
+		super(parent, invokingState);
+    	this.parser = parser;
+	}
+	public RETURN_TAG(): TerminalNode {
+		return this.getToken(IdlParser.RETURN_TAG, 0);
+	}
+	public documentationBlock(): DocumentationBlockContext {
+		return this.getTypedRuleContext(DocumentationBlockContext, 0) as DocumentationBlockContext;
+	}
+    public get ruleIndex(): number {
+    	return IdlParser.RULE_documentationReturn;
+	}
+	public enterRule(listener: IdlParserListener): void {
+	    if(listener.enterDocumentationReturn) {
+	 		listener.enterDocumentationReturn(this);
+		}
+	}
+	public exitRule(listener: IdlParserListener): void {
+	    if(listener.exitDocumentationReturn) {
+	 		listener.exitDocumentationReturn(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: IdlParserVisitor<Result>): Result {
+		if (visitor.visitDocumentationReturn) {
+			return visitor.visitDocumentationReturn(this);
+		} else {
+			return visitor.visitChildren(this);
+		}
+	}
+}
+
+
+export class ParametersRefContext extends ParserRuleContext {
+	constructor(parser?: IdlParser, parent?: ParserRuleContext, invokingState?: number) {
+		super(parent, invokingState);
+    	this.parser = parser;
+	}
+	public typeRef_list(): TypeRefContext[] {
+		return this.getTypedRuleContexts(TypeRefContext) as TypeRefContext[];
+	}
+	public typeRef(i: number): TypeRefContext {
+		return this.getTypedRuleContext(TypeRefContext, i) as TypeRefContext;
+	}
+	public IDENTIFIER_list(): TerminalNode[] {
+	    	return this.getTokens(IdlParser.IDENTIFIER);
+	}
+	public IDENTIFIER(i: number): TerminalNode {
+		return this.getToken(IdlParser.IDENTIFIER, i);
+	}
+	public COMMA_list(): TerminalNode[] {
+	    	return this.getTokens(IdlParser.COMMA);
+	}
+	public COMMA(i: number): TerminalNode {
+		return this.getToken(IdlParser.COMMA, i);
+	}
+    public get ruleIndex(): number {
+    	return IdlParser.RULE_parametersRef;
+	}
+	public enterRule(listener: IdlParserListener): void {
+	    if(listener.enterParametersRef) {
+	 		listener.enterParametersRef(this);
+		}
+	}
+	public exitRule(listener: IdlParserListener): void {
+	    if(listener.exitParametersRef) {
+	 		listener.exitParametersRef(this);
+		}
+	}
+	// @Override
+	public accept<Result>(visitor: IdlParserVisitor<Result>): Result {
+		if (visitor.visitParametersRef) {
+			return visitor.visitParametersRef(this);
 		} else {
 			return visitor.visitChildren(this);
 		}

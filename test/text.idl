@@ -3,7 +3,7 @@ type_prefix MyPrefix;
 import "my.idl";
 
 static interface Navigation {
-    optional Navigation 
+    optional Navigation navigation;
 }
 
 // Doc @internal
@@ -12,12 +12,15 @@ weak_ref interface MyInterface (dart: myname) {
     Multiline doc @internal with tag @undocumented.
     */
     listener InternalListener {
-        void onEvent<dart: onEventDart, cpp: onEventNative>(int param, int secondParam);
+        void onEvent<dart: onEventDart, cpp: onEventNative>(int param, int);
     }
 
     vector<int> val;
     int parameter;
     bitmap image readonly;
+    // method link to {@link #parameter} and internal event {@link InternalListener#onEvent(int, int)}
+    // @param str - string param.
+    // @return - nothing.
     void method(const string str);
 }
 

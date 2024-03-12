@@ -6,7 +6,11 @@ import IdlParserVisitor from './grammar/IdlParserVisitor';
 import {
     BasedProtoInternalContext,
     CustomizableNameDeclContext,
+    DocumentationBlockContext,
     DocumentationContext,
+    DocumentationLinkContext,
+    DocumentationParamContext,
+    DocumentationReturnContext,
     DocumentationTagContext,
     EnumDeclContext,
     EnumFieldContext,
@@ -18,6 +22,7 @@ import {
     ListenerDeclContext,
     ParameterContext,
     ParametersDeclContext,
+    ParametersRefContext,
     ProgrammContext,
     PropertyDeclContext,
     StructDeclContext,
@@ -94,18 +99,69 @@ export default class HighlightVisitor extends IdlParserVisitor<void> {
             this.pushToken(value.symbol, 'comment', ['documentation']);
         });
 
+        this.visitChildren(ctx);
+    };
+
+    visitDocumentationBlock = (ctx: DocumentationBlockContext) => {
         ctx.DOC_TEXT_list().forEach((value) => {
             this.pushToken(value.symbol, 'comment', ['documentation']);
         });
 
-        this.visitChildren(ctx);
+        ctx.documentationLink_list().forEach((value) => {
+            this.onDebug(`Visit link ${value}`);
+            this.visit(value);
+        });
     };
 
     visitDocumentationTag = (ctx: DocumentationTagContext) => {
-        this.pushToken(ctx.DOC_COMMERCIAL()?.symbol, 'decorator');
-        this.pushToken(ctx.DOC_DEPRECATED()?.symbol, 'decorator');
-        this.pushToken(ctx.DOC_INTERNAL()?.symbol, 'decorator');
-        this.pushToken(ctx.DOC_UNDOCUMENTED()?.symbol, 'decorator');
+        this.pushToken(ctx.COMMERCIAL_TAG()?.symbol, 'decorator');
+        this.pushToken(ctx.DEPRECATED_TAG()?.symbol, 'decorator');
+        this.pushToken(ctx.INTERNAL_TAG()?.symbol, 'decorator');
+        this.pushToken(ctx.UNDOCUMENTED_TAG()?.symbol, 'decorator');
+    };
+
+    visitDocumentationLink = (ctx: DocumentationLinkContext) => {
+        this.pushToken(ctx.LINK_TAG_BEGIN().symbol, 'decorator');
+        this.pushToken(ctx.LINK_TAG_END().symbol, 'decorator');
+
+        if (ctx._Type) {
+            this.visit(ctx._Type);
+        }
+
+        if (ctx._Member) {
+            if (ctx.parametersRef_list().length > 0) {
+                this.pushToken(ctx._Member, 'method');
+                ctx.parametersRef_list().forEach((value) => {
+                    this.onDebug(`visit paramer decl ${value}`);
+                    this.visit(value);
+                });
+            } else {
+                this.pushToken(ctx._Member, 'property');
+            }
+        }
+    };
+
+    visitDocumentationParam = (ctx: DocumentationParamContext) => {
+        this.pushToken(ctx.PARAM_TAG().symbol, 'decorator');
+        this.pushToken(ctx._Member, 'parameter');
+
+        this.visit(ctx._Desc);
+    };
+
+    visitDocumentationReturn = (ctx: DocumentationReturnContext) => {
+        this.pushToken(ctx.RETURN_TAG().symbol, 'decorator');
+
+        this.visit(ctx._Desc);
+    };
+
+    visitParametersRef = (ctx: ParametersRefContext) => {
+        ctx.typeRef_list().forEach((value) => {
+            this.visit(value);
+        });
+
+        ctx.IDENTIFIER_list().forEach((value) => {
+            this.pushToken(value.symbol, 'parameter');
+        });
     };
 
     visitInterfaceDecl = (ctx: InterfaceDeclContext) => {
