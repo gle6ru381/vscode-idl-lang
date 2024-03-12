@@ -21,7 +21,7 @@ documentationLink: LINK_TAG_BEGIN (Type=typeRef | Type=typeRef? NUM Member=IDENT
 documentationParam: PARAM_TAG Member=IDENTIFIER Desc=documentationBlock;
 documentationReturn: RETURN_TAG Desc=documentationBlock;
 
-parametersRef: CONST? typeRef IDENTIFIER? (COMMA typeRef IDENTIFIER?)*;
+parametersRef: CONST? typeRef IDENTIFIER? (COMMA CONST? typeRef IDENTIFIER?)*;
 
 interfaceDecl: documentation? (STATIC? VIRTUAL? VIEW_DELEGATE? interfaceOwnership? INTERFACE
                 | NATIVE LISTENER) IDENTIFIER (LPAREN customizableNameDecl RPAREN)? (COLON Parent=typeRef)? LBRACE (functionDecl | propertyDecl | topDecl)* RBRACE;

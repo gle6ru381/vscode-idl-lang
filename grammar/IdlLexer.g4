@@ -122,13 +122,15 @@ mode MULTI_LINE_DOC;
     MULTI_SYMBOL: . -> type(DOC_TEXT);
 
 mode DOC_LINK;
-    LINK_IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]* -> type(IDENTIFIER);
+    LINK_CONST: 'const' -> type(CONST);
+    LINK_OPTIONAL: 'optional' -> type(OPTIONAL);
     LINK_DOT: '.' -> type(DOT);
     LINK_NUM: '#' -> type(NUM);
     LINK_LPAREN: '(' -> type(LPAREN);
     LINK_RPAREN: ')' -> type(RPAREN);
     LINK_COMMA: ',' -> type(COMMA);
     LINK_END: '}' -> type(LINK_TAG_END), popMode;
+    LINK_IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]* -> type(IDENTIFIER);
     LINK_SPACE: [ \t] -> skip;
 
 mode DOC_PARAM;

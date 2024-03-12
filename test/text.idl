@@ -12,13 +12,13 @@ weak_ref interface MyInterface (dart: myname) {
     Multiline doc @internal with tag @undocumented.
     */
     listener InternalListener {
-        void onEvent<dart: onEventDart, cpp: onEventNative>(int param, int);
+        void onEvent<dart: onEventDart, cpp: onEventNative>(int param, int param2);
     }
 
     vector<int> val;
     int parameter;
     bitmap image readonly;
-    // method link to {@link #parameter} and internal event {@link InternalListener#onEvent(int, int)}
+    // method link to {@link #parameter} and internal event {@link InternalListener#onEvent(const int val, int)}
     // @param str - string param.
     // @return - nothing.
     void method(const string str);
