@@ -5,6 +5,7 @@ import { Position, Range, SemanticTokensBuilder } from 'vscode';
 import IdlParserVisitor from './grammar/IdlParserVisitor';
 import {
     BasedProtoInternalContext,
+    CustomizableNameContext,
     CustomizableNameDeclContext,
     DocumentationBlockContext,
     DocumentationContext,
@@ -271,30 +272,13 @@ export default class HighlightVisitor extends IdlParserVisitor<void> {
         this.visitChildren(ctx);
     };
 
-    visitCustomizableNameDecl = (ctx: CustomizableNameDeclContext) => {
-        ctx.CPP_list()?.forEach((value) => {
-            this.pushKeywordToken(value.symbol);
-        });
-
-        ctx.JAVA_list()?.forEach((value) => {
-            this.pushKeywordToken(value.symbol);
-        });
-
-        ctx.OBJC_list()?.forEach((value) => {
-            this.pushKeywordToken(value.symbol);
-        });
-
-        ctx.SWIFT_list()?.forEach((value) => {
-            this.pushKeywordToken(value.symbol);
-        });
-
-        ctx.DART_list()?.forEach((value) => {
-            this.pushKeywordToken(value.symbol);
-        });
-
-        ctx.KMP_list()?.forEach((value) => {
-            this.pushKeywordToken(value.symbol);
-        });
+    visitCustomizableName = (ctx: CustomizableNameContext) => {
+        this.pushKeywordToken(ctx.CPP()?.symbol);
+        this.pushKeywordToken(ctx.JAVA()?.symbol);
+        this.pushKeywordToken(ctx.OBJC()?.symbol);
+        this.pushKeywordToken(ctx.SWIFT()?.symbol);
+        this.pushKeywordToken(ctx.DART()?.symbol);
+        this.pushKeywordToken(ctx.KMP()?.symbol);
 
         ctx.IDENTIFIER_list().forEach((value) => {
             this.pushToken(value.symbol, 'method');

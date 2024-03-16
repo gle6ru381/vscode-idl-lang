@@ -48,7 +48,9 @@ structFieldDecl: Doc=documentation? Type=typeRef Name=IDENTIFIER Based=basedProt
 
 typeRef: OPTIONAL? GlobalNs=DOT? IDENTIFIER (DOT IDENTIFIER)* (LANGLE typeRef (COMMA typeRef)* RANGLE)?;
 
-customizableNameDecl: (CPP|JAVA|KMP|OBJC|SWIFT|DART) COLON IDENTIFIER (COMMA (CPP|JAVA|KMP|OBJC|SWIFT|DART) COLON IDENTIFIER)* COMMA?;
+customizableNameDecl: customizableName (COMMA customizableName)* COMMA?;
+
+customizableName: (CPP|JAVA|KMP|OBJC|SWIFT|DART) COLON IDENTIFIER (DOT IDENTIFIER)*;
 
 basedProtoTop: BASED_ON STR_LITERAL COLON typeRef;
 basedProtoInternal: BASED_ON IDENTIFIER;
